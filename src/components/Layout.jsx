@@ -35,11 +35,6 @@ function Layout({ children, maxWidth = "sm" }) {
               alt="KBRI Logo"
               style={{ height: 64, marginRight: 0 }}
             />
-            <img
-              src="/logo-kmii.png"
-              alt="KMII Logo"
-              style={{ height: 64, marginRight: 10 }}
-            />
             <Box sx={{ flexGrow: 1, textAlign: "center" }}>
               <Typography
                 variant="h6"
@@ -52,6 +47,11 @@ function Layout({ children, maxWidth = "sm" }) {
                 イード・アル＝フィトル礼拝
               </Typography>
             </Box>
+            <img
+              src="/logo-kmii.png"
+              alt="KMII Logo"
+              style={{ height: 64, marginLeft: 0 }}
+            />
           </Toolbar>
         </Container>
       </AppBar>
