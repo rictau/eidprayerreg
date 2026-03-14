@@ -1,0 +1,10 @@
+.env
+/dist
+*.log
+node_modules
+.firebase/
+.idx/
+.cache/
+*.cache
+.DS_Store
+.firebase/*.cache
