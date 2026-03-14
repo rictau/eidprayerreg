@@ -256,7 +256,7 @@ const AdminPage = () => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2, mb: 3}}>
             <Box>
                 <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                    Dashboard Admin
+                    Admin Panel
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     Panel kendali jemaah Salat Idul Fitri 1447H

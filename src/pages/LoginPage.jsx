@@ -33,7 +33,7 @@ const LoginPage = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Admin Login
+          Admin Login (管理者ログイン)
         </Typography>
         <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
           <TextField
@@ -41,7 +41,7 @@ const LoginPage = () => {
             required
             fullWidth
             id="email"
-            label="Alamat Email"
+            label="Alamat Email (メールアドレス)"
             name="email"
             autoComplete="email"
             autoFocus
@@ -53,7 +53,7 @@ const LoginPage = () => {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Password (パスワード)"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -67,7 +67,7 @@ const LoginPage = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login
+            Login (ログイン)
           </Button>
         </Box>
       </Box>

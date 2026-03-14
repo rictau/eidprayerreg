@@ -13,10 +13,10 @@ function Footer() {
     >
       <Container maxWidth="sm">
         <Typography variant="body2" color="text.secondary">
-          Masjid Indonesia Tokyo
+          Masjid Indonesia Tokyo (インドネシア東京モスク)
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          4-6-6 Meguro, Meguro-ku, Tokyo 153-0063
+          〒153-0063 東京都目黒区下目黒４丁目６−６
         </Typography>
       </Container>
     </Box>
