@@ -26,11 +26,11 @@ exports.sendRegistrationEmail = functions.firestore
     }
 
     const initialGelombangSalatOptions = [
-        { id: 1, name: "Gelombang Salat 1", time: "07:00 - 07:30" },
-        { id: 2, name: "Gelombang Salat 2", time: "08:00 - 08:30" },
-        { id: 3, name: "Gelombang Salat 3", time: "09:00 – 09:30" },
-        { id: 4, name: "Gelombang Salat 4", time: "10:00 – 10:30" },
-        { id: 5, name: "Gelombang Salat 5", time: "10:45 - 11:15" },
+        { id: 1, name: "Gelombang 1 (第1回)", time: "07:00 - 07:30" },
+        { id: 2, name: "Gelombang 2 (第2回)", time: "08:00 - 08:30" },
+        { id: 3, name: "Gelombang 3 (第3回)", time: "09:00 – 09:30" },
+        { id: 4, name: "Gelombang 4 (第4回)", time: "10:00 – 10:30" },
+        { id: 5, name: "Gelombang 5 (第5回)", time: "10:45 - 11:15" },
     ];
 
     const gelombang = initialGelombangSalatOptions.find((g) => g.id === kloter);
@@ -75,45 +75,137 @@ exports.sendRegistrationEmail = functions.firestore
       </p>
 
       <div style="border-top: 1px solid #e0e0e0; margin-top: 24px; padding-top: 24px; text-align: left;">
-          <h3 style="font-size: 18px; color: #1a237e; margin-bottom: 12px; text-align: center;">TATA TERTIB</h3>
-          <p style="margin-bottom: 16px;">Seluruh jamaah agar memperhatikan hal-hal sebagai berikut:</p>
+          <h3 style="font-size: 18px; color: #1a237e; margin-bottom: 12px; text-align: center;">
+            TATA TERTIB SALAT IDUL FITRI<br/>
+            <span style="font-size: 14px; color: #666; font-weight: normal;">イード・アル＝フィトル礼拝の注意事項</span>
+          </h3>
+          <p style="margin-bottom: 4px; font-size: 14px;">Seluruh jamaah agar memperhatikan hal-hal sebagai berikut:</p>
+          <p style="margin-top: 0; margin-bottom: 16px; font-size: 12px; color: #666;">参列者の皆様は、以下の事項を遵守してください：</p>
           
           <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-weight: bold; margin-bottom: 0.5rem;">I. UMUM</h4>
-              <p style="margin: 0.3rem 0;">1. Menjaga nama baik bangsa Indonesia di Jepang dengan mengedepankan 4K, Ketertiban, Keamanan, Kebersihan, dan Kenyamanan</p>
-              <p style="margin: 0.3rem 0;">2. Menjaga ketertiban dan keamanan selama perjalanan dari rumah, selama di MIT/SIT, serta perjalanan kembali ke rumah</p>
-              <p style="margin: 0.3rem 0;">3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Idulfitri 1447 H</p>
-              <p style="margin: 0.3rem 0;">4. Tidak merokok selain di area yang telah ditentukan oleh Pemerintah Jepang</p>
-              <p style="margin: 0.3rem 0;">5. Menjaga kenyamanan dengan tidak berbicara terlalu keras di area publik; dan</p>
-              <p style="margin: 0.3rem 0;">6. Mengikuti petunjuk petugas di lapangan.</p>
+              <h4 style="font-weight: bold; margin-bottom: 0.5rem; font-size: 15px;">I. UMUM <span style="font-size: 13px; font-weight: normal; color: #666;">(一般事項)</span></h4>
+              
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">1. Menjaga nama baik bangsa Indonesia di Jepang dengan mengedepankan 4K, Ketertiban, Keamanan, Kebersihan, dan Kenyamanan</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">4K（秩序、安全、清潔、快適）を優先し、日本におけるインドネシア国民の良き評判を維持すること</p>
+              </div>
+              
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">2. Menjaga ketertiban dan keamanan selama perjalanan dari rumah, selama di MIT/SIT, serta perjalanan kembali ke rumah</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">自宅から会場（MIT/SIT）への往復路、および会場内での秩序と安全を確保すること</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Idulfitri 1447 H</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">イード・アル＝フィトル礼拝が行われる全エリアの清潔さを保つこと</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">4. Tidak merokok selain di area yang telah ditentukan oleh Pemerintah Jepang</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">日本の法律に基づき、指定された場所以外での喫煙は禁止です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">5. Menjaga kenyamanan dengan tidak berbicara terlalu keras di area publik; dan</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">公共の場では大声で話さず、周囲への配慮を忘れないこと</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">6. Mengikuti petunjuk petugas di lapangan.</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">現場スタッフの指示に従うこと</p>
+              </div>
           </div>
 
           <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-weight: bold; margin-bottom: 0.5rem;">II. KELENGKAPAN SALAT</h4>
-              <p style="margin: 0.3rem 0;">1. Menjaga wudu sejak dari rumah, sarana Wudu di MIT/SIT sangat terbatas</p>
-              <p style="margin: 0.3rem 0;">2. Membawa tas untuk menyimpan sandal/sepatu</p>
-              <p style="margin: 0.3rem 0;">3. Membawa sajadah/alas salat masing-masing</p>
+              <h4 style="font-weight: bold; margin-bottom: 0.5rem; font-size: 15px;">II. KELENGKAPAN SALAT <span style="font-size: 13px; font-weight: normal; color: #666;">(礼拝の準備)</span></h4>
+              
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">1. Menjaga wudu sejak dari rumah, sarana Wudu di MIT/SIT sangat terbatas</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">会場の小浄（ウドゥ）施設は限られているため、できるだけ自宅で済ませてから来場すること</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">2. Membawa tas untuk menyimpan sandal/sepatu</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">靴やサンダルを収納するための袋を持参すること</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">3. Membawa sajadah/alas salat masing-masing</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各自で礼拝用マット（サジャダ）を持参すること</p>
+              </div>
           </div>
 
           <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-weight: bold; margin-bottom: 0.5rem;">III. TEKNIS SALAT</h4>
-              <p style="margin: 0.3rem 0;">1. Lokasi salat adalah MIT dan Balai Indonesia</p>
-              <p style="margin: 0.3rem 0;">2. Jamaah Lansia dan Difabel salat di Balai Indonesia Lantai I</p>
-              <p style="margin: 0.3rem 0;">3. Jamaah laki-laki salat di dalam MIT and Balai Indonesia Lantai II</p>
-              <p style="margin: 0.3rem 0;">4. Jamaah perempuan salat di Balai Indonesia Lantai II</p>
-              <p style="margin: 0.3rem 0;">5. Jamaah mengisi saf salat dengan prinsip first come first served</p>
-              <p style="margin: 0.3rem 0;">6. Jamaah agar antre dengan tertib menunggu gelombang salat yang tersedia</p>
-              <p style="margin: 0.3rem 0;">7. Waktu keseluruhan salat adalah 30 menit</p>
-              <p style="margin: 0.3rem 0;">8. Jeda waktu antargelombang adalah 30 menit</p>
-              <p style="margin: 0.3rem 0;">9. Jamaah agar segera mengosongkan area salat seusai khutbah berakhir untuk memberi kesempatan jamaah berikutnya</p>
+              <h4 style="font-weight: bold; margin-bottom: 0.5rem; font-size: 15px;">III. TEKNIS SALAT <span style="font-size: 13px; font-weight: normal; color: #666;">(礼拝の実施について)</span></h4>
+              
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">1. Lokasi salat adalah MIT dan Balai Indonesia</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">礼拝会場はMITおよびバライ・インドネシア（インドネシア会館）です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">2. Jamaah Lansia dan Difabel salat di Balai Indonesia Lantai I</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">高齢者および障がいをお持ちの方は、バライ・インドネシアの1階をご利用ください</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">3. Jamaah laki-laki salat di dalam MIT dan Balai Indonesia Lantai II</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">男性の方はMIT内またはバライ・インドネシアの2階です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">4. Jamaah perempuan salat di Balai Indonesia Lantai II</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">女性の方はバライ・インドネシアの2階です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">5. Jamaah mengisi saf salat dengan prinsip first come first served</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">礼拝の列（サフ）は先着順となります</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">6. Jamaah agar antre dengan tertib menunggu gelombang salat yang tersedia</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各回の礼拝を待つ際は、秩序を守って列に並んでください</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">7. Waktu keseluruhan salat adalah 30 menit</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各回の礼拝時間は30分です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">8. Jeda waktu antargelombang adalah 30 menit</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各回の間隔は30分です</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">9. Jamaah agar segera mengosongkan area salat seusai khutbah berakhir untuk memberi kesempatan jamaah berikutnya</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">次の回の方々のために、説教（フトバ）終了後は速やかに会場を空けてください</p>
+              </div>
           </div>
 
           <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-weight: bold; margin-bottom: 0.5rem;">IV. KONSUMSI</h4>
-              <p style="margin: 0.3rem 0;">1. Panitia menyediakan snacks dan minum untuk seluruh jamaah</p>
-              <p style="margin: 0.3rem 0;">2. Jamaah mengambil snacks dan minum seusai mengikuti salat</p>
-              <p style="margin: 0.3rem 0;">3. Jamaah membawa sampah plastik/kotak snacks ke dalam tas masing-masing</p>
-              <p style="margin: 0.3rem 0;">4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini</p>
+              <h4 style="font-weight: bold; margin-bottom: 0.5rem; font-size: 15px;">IV. KONSUMSI <span style="font-size: 13px; font-weight: normal; color: #666;">(飲食について)</span></h4>
+              
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">1. Panitia menyediakan snacks dan minum untuk seluruh jamaah</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">実行委員会より、参列者の皆様へ軽食と飲み物を提供します</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">2. Jamaah mengambil snacks dan minum seusai mengikuti salat</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">礼拝終了後に各自でお受け取りください</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">3. Jamaah membawa sampah plastik/kotak snacks ke dalam tas masing-masing</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">軽食の空き箱やプラスチックゴミは各自で持ち帰ってください</p>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <p style="margin: 0; font-size: 14px;">4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">コンビニのゴミ箱にゴミを捨てることは固く禁じられています</p>
+              </div>
           </div>
       </div>
 
