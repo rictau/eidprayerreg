@@ -88,5 +88,6 @@ This section outlines the iterative steps taken to build and refine the applicat
     - **Iteration 5:** Extracted the detailed rules from the `TataTertibDialog.jsx` component and embedded the fully formatted, bilingual text into the email.
     - **Iteration 6:** Updated the sender address, subject line, and the title of the `Tata Tertib` section based on final user feedback.
     - **Iteration 7:** Adjusted the sender name and `from` address for brand consistency.
-    - **Iteration 8 (Final):** Corrected the text alignment of the registration details (Name, Ikhwan, Akhwat) to be centered, ensuring a polished and visually consistent email design.
-5.  **Final Deployment:** The completed and fully tested Cloud Function was deployed to production.
+    8.  **Iteration 8:** Corrected the text alignment of the registration details (Name, Ikhwan, Akhwat) to be centered, ensuring a polished and visually consistent email design.
+    9.  **Iteration 9:** Revised the Japanese translation of the `Tata Tertib` (Rules & Regulations) in both the application dialog and the confirmation email to be more natural and simplified for Japanese-speaking users.
+    10. **Final Deployment:** The completed and fully tested Cloud Function was deployed to production.

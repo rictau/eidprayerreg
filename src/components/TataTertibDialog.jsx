@@ -53,7 +53,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
         <Typography variant="body1" sx={{ mb: 2 }}>
           Seluruh jamaah agar memperhatikan hal-hal sebagai berikut:<br/>
           <Typography component="span" variant="body2" color="text.secondary">
-            参列者の皆様は、以下の事項を遵守してください：
+            参列される皆さまは、以下のことにご注意ください：
           </Typography>
         </Typography>
 
@@ -67,7 +67,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               1. Menjaga nama baik bangsa Indonesia di Jepang dengan mengedepankan 4K, Ketertiban, Keamanan, Kebersihan, dan Kenyamanan
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              4K（秩序、安全、清潔、快適）を優先し、日本におけるインドネシア国民の良き評判を維持すること
+              秩序・安全・清潔・快適さを大切にして、日本でのインドネシア人の良い評判を守りましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -75,7 +75,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               2. Menjaga ketertiban dan keamanan selama perjalanan dari rumah, selama di MIT/SIT, serta perjalanan kembali ke rumah
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              自宅から会場（MIT/SIT）への往復路、および会場内での秩序と安全を確保すること
+              自宅から会場（MIT/SIT）への行き帰りや、会場内では秩序と安全に気をつけましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -83,7 +83,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Idulfitri 1447 H
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              イード・アル＝フィトル礼拝が行われる全エリアの清潔さを保つこと
+              礼拝の行われるすべての場所を、きれいに保ちましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -91,7 +91,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               4. Tidak merokok selain di area yang telah ditentukan oleh Pemerintah Jepang
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              日本の法律に基づき、指定された場所以外での喫煙は禁止です
+              日本の法律に基づき、指定された場所以外での喫煙は禁止されているのでやめましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -99,7 +99,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               5. Menjaga kenyamanan dengan tidak berbicara terlalu keras di area publik; dan
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              公共の場では大声で話さず、周囲への配慮を忘れないこと
+              公共の場では大きな声で話さず、周りの人に配慮しましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -107,7 +107,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               6. Mengikuti petunjuk petugas di lapangan.
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              現場スタッフの指示に従うこと
+              スタッフの指示には従いましょう。
             </Typography>
           </Box>
         </Box>
@@ -124,7 +124,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               1. Menjaga wudu sejak dari rumah, sarana Wudu di MIT/SIT sangat terbatas
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              会場の小浄（ウドゥ）施設は限られているため、できるだけ自宅で済ませてから来場すること
+              会場のウドゥ（小浄）施設は限られています。できるだけ自宅でウドゥを済ませてから来ましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -132,7 +132,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               2. Membawa tas untuk menyimpan sandal/sepatu
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              靴やサンダルを収納するための袋を持参すること
+              靴やサンダルを入れる袋を持参しましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -140,7 +140,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               3. Membawa sajadah/alas salat masing-masing
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              各自で礼拝用マット（サジャダ）を持参すること
+              各自で礼拝用マット（サジャダ）を持参しましょう。
             </Typography>
           </Box>
         </Box>
@@ -157,7 +157,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               1. Lokasi salat adalah MIT and Balai Indonesia
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              礼拝会場はMITおよびバライ・インドネシア（インドネシア会館）です
+              礼拝会場はMITとバライ・インドネシアです。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -165,7 +165,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               2. Jamaah Lansia dan Difabel salat di Balai Indonesia Lantai I
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              高齢者および障がいをお持ちの方は、バライ・インドネシアの1階をご利用ください
+              高齢者や障がいのある方は、バライ・インドネシアの1階をご利用ください。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -173,7 +173,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               3. Jamaah laki-laki salat di dalam MIT and Balai Indonesia Lantai II
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              男性の方はMIT内またはバライ・インドネシアの2階です
+              男性はMIT内またはバライ・インドネシアの2階で礼拝します。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -181,7 +181,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               4. Jamaah perempuan salat di Balai Indonesia Lantai II
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              女性の方はバライ・インドネシアの2階です
+              女性はバライ・インドネシアの2階で礼拝します。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -189,7 +189,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               5. Jamaah mengisi saf salat dengan prinsip first come first served
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              礼拝の列（サフ）は先着順となります
+              列（サフ）は先着順で埋めていきます。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -197,7 +197,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               6. Jamaah agar antre dengan tertib menunggu gelombang salat yang tersedia
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              各回の礼拝を待つ際は、秩序を守って列に並んでください
+              各回の礼拝を待るときは、落ち着いて順番を守りましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -205,7 +205,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               7. Waktu keseluruhan salat adalah 30 menit
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              各回の礼拝時間は30分です
+              各回の礼拝は30分ほどです。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -213,7 +213,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               8. Jeda waktu antargelombang adalah 30 menit
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              各回の間隔は30分です
+              回と回の間は30分の間隔をとります。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -221,7 +221,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               9. Jamaah agar segera mengosongkan area salat seusai khutbah berakhir untuk memberi kesempatan jamaah berikutnya
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              次の回の方々のために、説教（フトバ）終了後は速やかに会場を空けてください
+              説教（フトバ）が終わったら、次の回の方のために速やかに会場を空けましょう。
             </Typography>
           </Box>
         </Box>
@@ -238,7 +238,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               1. Panitia menyediakan snacks dan minum untuk seluruh jamaah
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              実行委員会より、参列者の皆様へ軽食と飲み物を提供します
+              実行委員会から、軽食と飲み物を用意しています。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -246,7 +246,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               2. Jamaah mengambil snacks dan minum seusai mengikuti salat
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              礼拝終了後に各自でお受け取りください
+              それらは礼拝後に受け取りましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -254,7 +254,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               3. Jamaah membawa sampah plastik/kotak snacks ke dalam tas masing-masing
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              軽食の空き箱やプラスチックゴミは各自で持ち帰ってください
+              空き箱やプラスチックゴミは、自分の袋に持ち帰りましょう。
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
@@ -262,7 +262,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
               4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              コンビニのゴミ箱にゴミを捨てることは固く禁じられています
+              コンビニのゴミ箱には捨てないようにしましょう。
             </Typography>
           </Box>
         </Box>
