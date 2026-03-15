@@ -38,7 +38,7 @@ function StatusPendaftaran({ registrationData }) {
     <Container maxWidth="sm">
       <Box 
         component="img"
-        src="/banner.jpeg"
+        src="/banner.jpeg?v=1.1"
         alt="Banner"
         sx={{
           width: "100%",

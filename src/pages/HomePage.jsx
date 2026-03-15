@@ -431,7 +431,7 @@ function HomePage() {
     <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
       <Box 
         component="img"
-        src="/banner.jpeg"
+        src="/banner.jpeg?v=1.1"
         alt="Banner"
         sx={{
           width: "100%",
