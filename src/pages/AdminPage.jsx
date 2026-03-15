@@ -121,12 +121,30 @@ const AdminPage = () => {
         
         const timeslotCollection = collection(db, 'timeslot');
         const timeslotUnsubscribe = onSnapshot(timeslotCollection, (timeslotSnapshot) => {
-            const timeslotData = timeslotSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            timeslotData.sort((a, b) => a.slot - b.slot);
-            setTimeslots(timeslotData);
+            const dbTimeslots = {};
+            timeslotSnapshot.docs.forEach(doc => {
+               const data = doc.data();
+               dbTimeslots[data.slot] = { id: doc.id, ...data };
+            });
+            
+            const mergedTimeslots = initialGelombangSalatOptions.map(option => {
+               if (dbTimeslots[option.id] !== undefined) {
+                   return dbTimeslots[option.id];
+               }
+               return {
+                   id: `placeholder_${option.id}`,
+                   slot: option.id,
+                   limit: 0,
+                   registered_ikhwan: 0,
+                   registered_akhwat: 0,
+                   isPlaceholder: true
+               };
+            });
+            
+            setTimeslots(mergedTimeslots);
             
             const initialLimits = {};
-            timeslotData.forEach(slot => {
+            mergedTimeslots.forEach(slot => {
                 initialLimits[slot.id] = slot.limit;
             });
             setEditedLimits(initialLimits);

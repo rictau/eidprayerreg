@@ -18,33 +18,27 @@ import {
   Button,
   FormControl,
   CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Typography,
-  Checkbox,
-  FormControlLabel,
   Card,
   CardActionArea,
   RadioGroup,
   Radio,
+  FormControlLabel,
   FormLabel,
-  Select,
-  MenuItem,
-  Link,
   Alert,
   LinearProgress,
   InputAdornment,
 } from "@mui/material";
-import { LocationOn } from "@mui/icons-material";
 import { FaMale, FaFemale } from "react-icons/fa";
 import StatusPendaftaran from "../components/StatusPendaftaran";
 import TataTertibDialog from "../components/TataTertibDialog";
 import { initialGelombangSalatOptions } from "../constants";
 
-function HomePage() {
+function Gelombang0Page() {
+  useEffect(() => {
+    document.title = "Gelombang Awal - Salat Idul Fitri 1447H";
+  }, []);
+
   const [gelombangSalatData, setGelombangSalatData] = useState([]);
   const [formData, setFormData] = useState({
     nama: "",
@@ -82,7 +76,7 @@ function HomePage() {
         });
 
         const mergedData = initialGelombangSalatOptions
-          .filter(option => option.id !== 0)
+          .filter(option => option.id === 0)
           .map((option) => {
             const data = timeslotData[option.id] || {};
             const limit = data.limit || 0;
@@ -191,16 +185,13 @@ function HomePage() {
           ikhwan: data.ikhwan || 0,
           akhwat: data.akhwat || 0,
         });
-        const currentKloterExists = gelombangSalatData.some(g => g.id === data.kloter);
-        setSelectedGelombangSalat(currentKloterExists ? data.kloter : null);
+        setSelectedGelombangSalat(data.kloter === 0 ? data.kloter : null);
         
         setEmailNotification({
           severity: "info",
-          message: currentKloterExists 
+          message: data.kloter === 0 
             ? "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
-            : data.kloter === 0
-              ? "Email ini sudah terdaftar di Gelombang Awal. Anda dapat memindahkan pendaftaran Anda ke Gelombang 1-5 di sini. (このメールは早期時間帯に登録されています。ここで第1〜5回の登録に変更できます。)"
-              : "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
+            : `Email ini sudah terdaftar di Gelombang ${data.kloter}. Anda dapat memindahkan pendaftaran Anda ke Gelombang Awal di sini. (このメールは第${data.kloter}回に登録されています。ここで早期時間帯に登録を変更できます。)`
         });
       } else {
         setExistingRegistration(null);
@@ -232,9 +223,9 @@ function HomePage() {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
-    if (totalAttendees > 5) {
+    if (totalAttendees > 4) {
       alert(
-        "Jumlah ikhwan dan akhwat tidak boleh lebih dari 5. (男性と女性の合計は5名を超えることはできません。)",
+        "Jumlah ikhwan dan akhwat tidak boleh lebih dari 4 untuk Gelombang Awal. (男性と女性の合計は、早期時間帯では4名を超えることはできません。)",
       );
       return;
     }
@@ -443,43 +434,26 @@ function HomePage() {
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
-      <Box 
-        component="img"
-        src="/banner.jpeg?v=1.1"
-        alt="Banner"
-        sx={{
-          width: "100%",
-          height: "auto",
-          borderRadius: 4, // Match theme Paper/Card borderRadius (16px)
-          mb: 3,
-          boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.1)",
-          display: "block",
-          objectFit: "cover",
-        }}
-      />
-
-
-
       <Box sx={{ mb: 3, textAlign: "left" }}>
         <Typography
-          variant="h6"
+          variant="h5"
           component="h1"
-          sx={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "bold", color: "primary.main", mb: 0 }}
         >
-          Silakan isi formulir di bawah ini untuk mendaftarkan diri dan keluarga.
+          Pendaftaran Gelombang Awal
         </Typography>
-        <Typography variant="body2" component="h2" color="text.secondary">
-          下記フォームにご記入の上、ご自身とご家族の登録をお願いします。
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: "bold" }}>
+          05:50 - 06:30
         </Typography>
       </Box>
 
       {!loading && !existingRegistration && totalAvailability <= 0 && (
         <Alert severity="error" sx={{ mb: 3 }}>
           <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            Maaf, seluruh kuota pendaftaran Salat Idul Fitri telah penuh. Kami memohon pengertian Anda untuk mencari masjid lain yang mengadakan Salat Idul Fitri.
+            Maaf, kuota pendaftaran Gelombang Awal telah penuh.
           </Typography>
           <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
-            申し訳ありませんが、イード礼拝のすべての定員が満席となりました。ご理解のほどよろしくお願いいたします。イード礼拝を開催している他のモスクをお探しになることをお勧めします。
+            申し訳ありませんが、早期時間帯の定員が満席となりました。
           </Typography>
         </Alert>
       )}
@@ -580,10 +554,6 @@ function HomePage() {
           )}
           
           <Box sx={{ mb: 5 }}>
-          <Typography variant="body2" color="text.disabled" sx={{ mb: 2, fontWeight: "small" }}>
-               *Anak di bawah 4 tahun tidak perlu didaftarkan.<br/>
-               <br/>
-            </Typography>
             <FormControl
               component="fieldset"
               sx={{ mb: 4 }}
@@ -639,11 +609,11 @@ function HomePage() {
 
         <Box sx={{ mb: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Pilih Gelombang Salat
+            Gelombang Salat Terpilih
           </Typography>
 
           <Typography variant="body2" color="text.secondary">
-            時間帯を選択
+            選択された時間帯
           </Typography>
         </Box>
         {loading ? (
@@ -654,7 +624,7 @@ function HomePage() {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateColumns: "1fr",
               gap: 2,
               mb: 3,
             }}
@@ -669,21 +639,26 @@ function HomePage() {
               const hasQuotaForSelection = effectiveAvailability >= totalAttendees;
               const isDisabled = !isEmailVerified || (totalAttendees > 0 && !hasQuotaForSelection) || (isFull && !isCurrentKloter);
 
+              // Auto-select the only available slot if verified
+              if (isEmailVerified && selectedGelombangSalat === null && !isDisabled) {
+                setSelectedGelombangSalat(gelombang.id);
+              }
+
               return (
                   <Card
                   key={gelombang.id}
                   variant="outlined"
                   sx={{
                     borderRadius: 4,
-                    ...(selectedGelombangSalat === gelombang.id && {
-                      borderColor: "primary.main",
-                      borderWidth: 2,
-                      backgroundColor: "rgba(18, 76, 58, 0.1)",
-                    }),
-                    ...(isDisabled && selectedGelombangSalat !== gelombang.id && {
+                    borderColor: "primary.main",
+                    borderWidth: 2,
+                    backgroundColor: "rgba(18, 76, 58, 0.1)",
+                    ...(isDisabled && {
                         backgroundColor: "#f5f5f5",
                         color: "#bdbdbd",
                         cursor: "not-allowed",
+                        borderColor: "#e0e0e0",
+                        borderWidth: 1,
                       }),
                   }}
                 >
@@ -760,4 +735,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Gelombang0Page;

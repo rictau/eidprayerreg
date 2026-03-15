@@ -90,4 +90,11 @@ This section outlines the iterative steps taken to build and refine the applicat
     - **Iteration 7:** Adjusted the sender name and `from` address for brand consistency.
     8.  **Iteration 8:** Corrected the text alignment of the registration details (Name, Ikhwan, Akhwat) to be centered, ensuring a polished and visually consistent email design.
     9.  **Iteration 9:** Revised the Japanese translation of the `Tata Tertib` (Rules & Regulations) in both the application dialog and the confirmation email to be more natural and simplified for Japanese-speaking users.
-    10. **Final Deployment:** The completed and fully tested Cloud Function was deployed to production.
+    10. **Iteration 10:** Created a new isolated registration page for "Gelombang Awal" (Slot 0: 05:50 - 06:30).
+    - Added Slot 0 to `src/constants.js`.
+    - Modified `Layout.jsx` to allow conditionally hiding the KBRI logo.
+    - Created `src/pages/Gelombang0Page.jsx` specifically for Slot 0, removing the top banner and KBRI logo.
+    - Updated `src/pages/HomePage.jsx` to exclude Slot 0 from the main registration flow.
+    - Updated `functions/index.js` to include Slot 0 in the email confirmation logic.
+    - Added the `/gelombang0` route to `src/App.jsx`.
+11. **Final Deployment:** The completed and fully tested application and Cloud Function were deployed.
