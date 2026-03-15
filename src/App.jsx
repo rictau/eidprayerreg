@@ -24,7 +24,7 @@ function App() {
             path="/"
             element={<Layout><HomePage /></Layout>}
           />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<Layout><LoginPage /></Layout>} />
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<Layout maxWidth="lg"><AdminPage /></Layout>} />
           </Route>

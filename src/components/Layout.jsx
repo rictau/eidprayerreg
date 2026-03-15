@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Footer from "./Footer";
 
-function Layout({ children, maxWidth = "sm" }) {
+function Layout({ children, maxWidth = "sm", showAppBar = true }) {
   return (
     <Box
       sx={{
@@ -19,43 +19,66 @@ function Layout({ children, maxWidth = "sm" }) {
         backgroundImage: "url('/noise.png')", // Subtle noise texture
       }}
     >
-      <AppBar 
-        position="sticky" 
-        color="primary" 
-        elevation={0}
-        sx={{
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            boxShadow: "0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12)"
-        }}
-    >
-        <Container maxWidth="md">
-          <Toolbar sx={{ padding: "0 !important", minHeight: "64px" }}>
-            <img
-              src="/logo-kbri.png"
-              alt="KBRI Logo"
-              style={{ height: 64, marginRight: 0 }}
-            />
-            <Box sx={{ flexGrow: 1, textAlign: "center" }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ fontWeight: 'bold', lineHeight: 1.2 }}
-              >
-                Salat Idul Fitri 1447H
-              </Typography>
-              <Typography variant="subtitle2" component="div" sx={{ opacity: 0.9 }}>
-                イード・アル＝フィトル礼拝
-              </Typography>
-            </Box>
-            <img
-              src="/logo-kmii.png"
-              alt="KMII Logo"
-              style={{ height: 64, marginLeft: 0 }}
-            />
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <Container component="main" maxWidth={maxWidth} sx={{ flexGrow: 1, py: 4 }}>
+      {showAppBar && (
+        <AppBar 
+          position="sticky" 
+          elevation={0}
+          sx={{
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
+              backdropFilter: "blur(8px)",
+              borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+              zIndex: (theme) => theme.zIndex.drawer + 1,
+          }}
+        >
+          <Container maxWidth="md">
+            <Toolbar sx={{ 
+              padding: "0 !important", 
+              minHeight: { xs: "56px", sm: "64px" },
+              display: "flex",
+              justifyContent: "space-between"
+            }}>
+              <Box 
+                component="img"
+                src="/logo-kbri.png"
+                alt="KBRI Logo"
+                sx={{ height: { xs: 40, sm: 48 } }}
+              />
+              <Box sx={{ textAlign: "center" }}>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{ 
+                    fontWeight: 'bold', 
+                    lineHeight: 1.2, 
+                    color: 'primary.main',
+                    fontSize: { xs: '0.9rem', sm: '1.1rem' }
+                  }}
+                >
+                  Salat Idul Fitri 1447H
+                </Typography>
+                <Typography 
+                  variant="subtitle2" 
+                  component="div" 
+                  sx={{ 
+                    opacity: 0.8, 
+                    color: 'text.secondary',
+                    fontSize: { xs: '0.65rem', sm: '0.75rem' }
+                  }}
+                >
+                  イード・アル＝フィトル礼拝
+                </Typography>
+              </Box>
+              <Box 
+                component="img"
+                src="/logo-kmii.png"
+                alt="KMII Logo"
+                sx={{ height: { xs: 40, sm: 48 } }}
+              />
+            </Toolbar>
+          </Container>
+        </AppBar>
+      )}
+      <Container component="main" maxWidth={maxWidth} sx={{ flexGrow: 1, py: { xs: 2, sm: 4 } }}>
         {children}
       </Container>
       <Footer />

@@ -429,29 +429,22 @@ function HomePage() {
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
-      <Paper elevation={3} sx={{ p: 2, mb: 3, borderRadius: 2 }}>
-        <Link
-          href="https://maps.app.goo.gl/D7mX98kD6rpXMc5Z7"
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ textDecoration: "none", color: "inherit" }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-            <LocationOn sx={{ mr: 1 }} />
-            <Box>
-              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                Masjid Indonesia Tokyo
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                インドネシア東京モスク
-              </Typography>
-              <Typography variant="body2">
-                4-6-6 Meguro, Meguro-ku, Tokyo 153-0063
-              </Typography>
-            </Box>
-          </Box>
-        </Link>
-      </Paper>
+      <Box 
+        component="img"
+        src="/banner.jpeg"
+        alt="Banner"
+        sx={{
+          width: "100%",
+          height: "auto",
+          borderRadius: 4, // Match theme Paper/Card borderRadius (16px)
+          mb: 3,
+          boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.1)",
+          display: "block",
+          objectFit: "cover",
+        }}
+      />
+
+
 
       <Box sx={{ mb: 3, textAlign: "left" }}>
         <Typography
@@ -480,7 +473,7 @@ function HomePage() {
       <form onSubmit={handleRegistration}>
         <Paper
           elevation={3}
-          sx={{ p: 4, borderRadius: 2, mb: 3 }}
+          sx={{ p: 4, borderRadius: 4, mb: 3 }}
         >
           <Box sx={{ display: 'flex', gap: 2, mb: emailNotification ? 2 : 3, alignItems: 'center' }}>
             <TextField
@@ -667,7 +660,7 @@ function HomePage() {
                   key={gelombang.id}
                   variant="outlined"
                   sx={{
-                    borderRadius: 2,
+                    borderRadius: 4,
                     ...(selectedGelombangSalat === gelombang.id && {
                       borderColor: "primary.main",
                       borderWidth: 2,
