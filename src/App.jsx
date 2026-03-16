@@ -6,7 +6,7 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const GelombangAwalPage = lazy(() => import("./pages/GelombangAwalPage"));
+const GelombangNolPage = lazy(() => import("./pages/GelombangNolPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
 
@@ -26,8 +26,8 @@ function App() {
             element={<Layout><HomePage /></Layout>}
           />
           <Route 
-            path="/gelombangawal"
-            element={<Layout showKBRILogo={false}><GelombangAwalPage /></Layout>}
+            path="/gelombangnol"
+            element={<Layout showKBRILogo={false}><GelombangNolPage /></Layout>}
           />
           <Route path="/login" element={<Layout><LoginPage /></Layout>} />
           <Route element={<ProtectedRoute />}>

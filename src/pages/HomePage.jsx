@@ -199,7 +199,7 @@ function HomePage() {
           message: currentKloterExists 
             ? "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
             : data.kloter === 0
-              ? "Email ini sudah terdaftar di Gelombang Awal. Anda dapat memindahkan pendaftaran Anda ke Gelombang 1-5 di sini. (このメールは早期時間帯に登録されています。ここで第1〜5回の登録に変更できます。)"
+              ? "Email ini sudah terdaftar di Gelombang 0. Anda dapat memindahkan pendaftaran Anda ke Gelombang 1-5 di sini. (このメールは早期時間帯に登録されています。ここで第1〜5回の登録に変更できます。)"
               : "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
         });
       } else {

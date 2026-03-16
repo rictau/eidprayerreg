@@ -34,9 +34,9 @@ import StatusPendaftaran from "../components/StatusPendaftaran";
 import TataTertibDialog from "../components/TataTertibDialog";
 import { initialGelombangSalatOptions } from "../constants";
 
-function GelombangAwalPage() {
+function GelombangNolPage() {
   useEffect(() => {
-    document.title = "Gelombang Awal - Salat Idul Fitri 1447H";
+    document.title = "Gelombang 0 - Salat Idul Fitri 1447H";
   }, []);
 
   const [gelombangSalatData, setGelombangSalatData] = useState([]);
@@ -192,7 +192,7 @@ function GelombangAwalPage() {
           severity: "info",
           message: data.kloter === 0 
             ? "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
-            : `Email ini sudah terdaftar di Gelombang ${data.kloter}. Anda dapat memindahkan pendaftaran Anda ke Gelombang Awal di sini. (このメールは第${data.kloter}回に登録されています。ここで早期時間帯に登録を変更できます。)`
+            : `Email ini sudah terdaftar di Gelombang ${data.kloter}. Anda dapat memindahkan pendaftaran Anda ke Gelombang 0 di sini. (このメールは第${data.kloter}回に登録されています。ここで第0回に登録を変更できます。)`
         });
       } else {
         setExistingRegistration(null);
@@ -226,7 +226,7 @@ function GelombangAwalPage() {
     e.preventDefault();
     if (totalAttendees > 4) {
       alert(
-        "Jumlah ikhwan dan akhwat tidak boleh lebih dari 4 untuk Gelombang Awal. (男性と女性の合計は、早期時間帯では4名を超えることはできません。)",
+        "Jumlah ikhwan dan akhwat tidak boleh lebih dari 4 untuk Gelombang 0. (男性と女性の合計は、第0回では4名を超えることはできません。)",
       );
       return;
     }
@@ -441,7 +441,7 @@ function GelombangAwalPage() {
           component="h1"
           sx={{ fontWeight: "bold", color: "primary.main", mb: 0 }}
         >
-          Pendaftaran Gelombang Awal
+          Pendaftaran Gelombang 0
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: "bold" }}>
           05:50 - 06:30
@@ -451,10 +451,10 @@ function GelombangAwalPage() {
       {!loading && !existingRegistration && totalAvailability <= 0 && (
         <Alert severity="error" sx={{ mb: 3 }}>
           <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            Maaf, kuota pendaftaran Gelombang Awal telah penuh.
+            Maaf, kuota pendaftaran Gelombang 0 telah penuh.
           </Typography>
           <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
-            申し訳ありませんが、早期時間帯の定員が満席となりました。
+            申し訳ありませんが、第0回の定員が満席となりました。
           </Typography>
         </Alert>
       )}
@@ -736,4 +736,4 @@ function GelombangAwalPage() {
   );
 }
 
-export default GelombangAwalPage;
+export default GelombangNolPage;
