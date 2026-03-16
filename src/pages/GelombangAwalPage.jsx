@@ -34,12 +34,13 @@ import StatusPendaftaran from "../components/StatusPendaftaran";
 import TataTertibDialog from "../components/TataTertibDialog";
 import { initialGelombangSalatOptions } from "../constants";
 
-function Gelombang0Page() {
+function GelombangAwalPage() {
   useEffect(() => {
     document.title = "Gelombang Awal - Salat Idul Fitri 1447H";
   }, []);
 
   const [gelombangSalatData, setGelombangSalatData] = useState([]);
+
   const [formData, setFormData] = useState({
     nama: "",
     email: "",
@@ -735,4 +736,4 @@ function Gelombang0Page() {
   );
 }
 
-export default Gelombang0Page;
+export default GelombangAwalPage;

@@ -175,8 +175,8 @@ exports.sendRegistrationEmail = functions.firestore
               </div>
 
               <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">8. Jeda waktu antargelombang adalah 30 menit</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">回と回の間は30分の間隔をとります。</p>
+                <p style="margin: 0; font-size: 14px;">8. Jeda waktu antargelombang adalah 30 menit (kecuali jarak antara gelombang 4 dan 5 selama 15 menit)</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各回の間隔は30分（ただし、第4回と第5回の間隔は15分とする）</p>
               </div>
 
               <div style="margin-bottom: 0.5rem;">
@@ -207,6 +207,13 @@ exports.sendRegistrationEmail = functions.firestore
                 <p style="margin: 0; font-size: 14px;">4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini</p>
                 <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">コンビニのゴミ箱には捨てないようにしましょう。</p>
               </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 24px; margin-bottom: 24px;">
+            <p style="font-weight: bold; font-size: 16px; margin: 0;">Taqabbalallahu Minna Wa Minkum</p>
+            <p style="font-size: 14px; margin: 4px 0;">タカッバラッラーフ・ミンナ・ワ・ミンクム</p>
+            <p style="font-size: 14px; margin: 12px 0 4px 0;">Mohon kerja sama demi kelancaran ibadah kita bersama.</p>
+            <p style="font-size: 12px; color: #666; margin: 0;">円滑な礼拝運営のため、皆様のご協力をお願いいたします。</p>
           </div>
       </div>
 

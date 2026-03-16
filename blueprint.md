@@ -97,4 +97,5 @@ This section outlines the iterative steps taken to build and refine the applicat
     - Updated `src/pages/HomePage.jsx` to exclude Slot 0 from the main registration flow.
     - Updated `functions/index.js` to include Slot 0 in the email confirmation logic.
     - Added the `/gelombang0` route to `src/App.jsx`.
-11. **Final Deployment:** The completed and fully tested application and Cloud Function were deployed.
+11. **Iteration 11:** Updated the 'Tata Tertib' (Rules & Regulations) content in the confirmation email (`functions/index.js`) to strictly follow the latest definitions in `src/components/TataTertibDialog.jsx`. This included adding the specific 15-minute interval note for waves 4 and 5, as well as the bilingual closing prayer and cooperation message.
+12. **Final Deployment:** The completed and fully tested application and Cloud Function were deployed.
