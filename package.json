@@ -16,6 +16,7 @@
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
     "firebase": "^12.10.0",
+    "html5-qrcode": "^2.3.8",
     "qrcode.react": "^4.2.0",
     "react": "^19.2.0",
     "react-csv": "^2.2.2",

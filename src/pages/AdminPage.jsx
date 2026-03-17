@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, onSnapshot, doc, writeBatch, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot, doc, writeBatch, getDocs, query, where, getCountFromServer } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import { CSVLink } from 'react-csv';
 import { styled } from '@mui/material/styles';
@@ -37,7 +37,9 @@ import {
     Man, 
     Woman, 
     EventSeat,
-    InfoOutlined
+    InfoOutlined,
+    HowToReg,
+    QrCodeScanner
 } from '@mui/icons-material';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { initialGelombangSalatOptions } from '../constants';
@@ -71,8 +73,8 @@ const StatCard = ({ title, value, icon, color, subtitle }) => (
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center', 
-                    width: { xs: 32, sm: 48 }, 
-                    height: { xs: 32, sm: 48 }, 
+                    width: { xs: 32, sm: 40 }, 
+                    height: { xs: 32, sm: 40 }, 
                     borderRadius: 2, 
                     backgroundColor: `${color}15`,
                     color: color,
@@ -80,18 +82,18 @@ const StatCard = ({ title, value, icon, color, subtitle }) => (
                 }}>
                     {icon}
                 </Box>
-                <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600, fontSize: { xs: '0.65rem', sm: '0.875rem' }, lineHeight: 1.2 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600, fontSize: { xs: '0.65rem', sm: '0.8rem' }, lineHeight: 1.2 }}>
                     {title}
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', fontSize: { xs: '1.1rem', sm: '2.125rem' } }}>
+                <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', fontSize: { xs: '1.1rem', sm: '1.8rem' } }}>
                     {value}
                 </Typography>
                 {subtitle && (
                     <MuiTooltip title={subtitle}>
                         <IconButton size="small" sx={{ p: 0.5, display: { xs: 'none', sm: 'inline-flex' } }}>
-                            <InfoOutlined sx={{ fontSize: 20 }} />
+                            <InfoOutlined sx={{ fontSize: 18 }} />
                         </IconButton>
                     </MuiTooltip>
                 )}
@@ -102,6 +104,7 @@ const StatCard = ({ title, value, icon, color, subtitle }) => (
 
 const AdminPage = () => {
   const [timeslots, setTimeslots] = useState([]);
+  const [totalCheckedIn, setTotalCheckedIn] = useState(0);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [editedLimits, setEditedLimits] = useState({});
@@ -114,11 +117,20 @@ const AdminPage = () => {
   const csvLinkRef = useRef(null);
 
   useEffect(() => {
-    const authUnsubscribe = onAuthStateChanged(auth, (user) => {
+    const authUnsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
         setLoading(true);
         
+        // Fetch total checked-in
+        try {
+          const q = query(collection(db, "registrations"), where("checkedIn", "==", true));
+          const snapshot = await getCountFromServer(q);
+          setTotalCheckedIn(snapshot.data().count);
+        } catch (e) {
+          console.error("Error fetching checked-in count:", e);
+        }
+
         const timeslotCollection = collection(db, 'timeslot');
         const timeslotUnsubscribe = onSnapshot(timeslotCollection, (timeslotSnapshot) => {
             const dbTimeslots = {};
@@ -211,6 +223,7 @@ const AdminPage = () => {
             const gelombangName = gelombang ? gelombang.name : (data.kloter || 'N/A');
 
             return {
+                ID: d.id,
                 Nama: data.nama || 'N/A',
                 Email: data.email || 'N/A',
                 'Nomor Telepon': data.nomorTelepon || 'N/A',
@@ -219,6 +232,10 @@ const AdminPage = () => {
                 'Jumlah Akhwat': data.akhwat || 0,
                 Sesi: gelombangName,
                 Timestamp: registrationTimestamp,
+                'Checked In': data.checkedIn ? 'Yes' : 'No',
+                'Checked In At': data.checkedInAt && typeof data.checkedInAt.toDate === 'function' 
+                    ? data.checkedInAt.toDate().toLocaleString('id-ID', { timeZone: 'Asia/Tokyo' }) 
+                    : ''
             };
         });
 
@@ -252,9 +269,8 @@ const AdminPage = () => {
   const grandTotal = totalIkhwan + totalAkhwat;
 
   const chartData = timeslots.map(slot => {
-    const gelombang = initialGelombangSalatOptions.find(g => g.id === slot.slot);
     return {
-      name: gelombang ? gelombang.name.replace('Gelombang Salat ', 'Sesi ') : `Sesi ${slot.slot}`,
+      name: slot.slot.toString(),
       Ikhwan: slot.registered_ikhwan || 0,
       Akhwat: slot.registered_akhwat || 0,
     };
@@ -283,6 +299,15 @@ const AdminPage = () => {
             <Box sx={{ display: 'flex', gap: 1.5 }}>
                 <Button 
                     variant="outlined" 
+                    color="primary"
+                    startIcon={<QrCodeScanner />} 
+                    onClick={() => navigate('/checkin')}
+                    sx={{ borderRadius: 2, textTransform: 'none' }}
+                >
+                    Halaman Check-in
+                </Button>
+                <Button 
+                    variant="outlined" 
                     color="inherit"
                     startIcon={<Logout />} 
                     onClick={handleLogout}
@@ -304,8 +329,8 @@ const AdminPage = () => {
             </Box>
         </Box>
 
-        <Grid container spacing={{ xs: 1, sm: 3 }} sx={{ mb: 4 }}>
-            <Grid item xs={4}>
+        <Grid container spacing={{ xs: 1, sm: 2 }} sx={{ mb: 4 }}>
+            <Grid item xs={6} sm={3}>
                 <StatCard 
                     title="Total Jemaah" 
                     value={grandTotal} 
@@ -314,7 +339,16 @@ const AdminPage = () => {
                     subtitle="Gabungan Ikhwan dan Akhwat dari semua sesi"
                 />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6} sm={3}>
+                <StatCard 
+                    title="Total Check-in" 
+                    value={totalCheckedIn} 
+                    icon={<HowToReg sx={{ fontSize: { xs: 18, sm: 24 } }} />} 
+                    color={theme.palette.success.main}
+                    subtitle="Jumlah jemaah yang sudah melakukan check-in di lokasi"
+                />
+            </Grid>
+            <Grid item xs={6} sm={3}>
                 <StatCard 
                     title="Jemaah Ikhwan" 
                     value={totalIkhwan} 
@@ -322,7 +356,7 @@ const AdminPage = () => {
                     color="#8884d8"
                 />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6} sm={3}>
                 <StatCard 
                     title="Jemaah Akhwat" 
                     value={totalAkhwat} 
@@ -332,9 +366,10 @@ const AdminPage = () => {
             </Grid>
         </Grid>
 
-        <Grid container spacing={4}>
-            <Grid item xs={12} lg={8}>
-                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 20px 0 rgba(0,0,0,0.05)', height: '100%' }}>
+        <Grid container spacing={3}>
+            {/* Table Section - Full Width */}
+            <Grid item xs={12}>
+                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 20px 0 rgba(0,0,0,0.05)', width: '100%' }}>
                     <Box sx={{ p: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                             Kapasitas per Sesi
@@ -428,14 +463,15 @@ const AdminPage = () => {
                 </Card>
             </Grid>
 
-            <Grid item xs={12} lg={4}>
-                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 20px 0 rgba(0,0,0,0.05)', height: '100%' }}>
+            {/* Chart Section - Full Width */}
+            <Grid item xs={12}>
+                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 20px 0 rgba(0,0,0,0.05)', width: '100%' }}>
                     <Box sx={{ p: 3 }}>
                         <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
                             Visualisasi Data
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Perbandingan Ikhwan & Akhwat per Sesi
+                            Perbandingan Ikhwan & Akhwat per Sesi (0-5)
                         </Typography>
                     </Box>
                     <Divider />
@@ -447,7 +483,7 @@ const AdminPage = () => {
                                     dataKey="name" 
                                     axisLine={false} 
                                     tickLine={false} 
-                                    tick={{ fontSize: 12, fill: theme.palette.text.secondary }}
+                                    tick={{ fontSize: 14, fontWeight: 'bold', fill: theme.palette.text.secondary }}
                                 />
                                 <YAxis 
                                     axisLine={false} 
