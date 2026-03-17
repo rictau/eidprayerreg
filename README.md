@@ -54,6 +54,7 @@ While generic tools like Google Forms are suitable for simple surveys, managing 
 - **Real-Time Slot Availability:** Prayer slots (Gelombang Salat) are updated in real-time. Users can see the current progress and availability for each slot.
 - **Email Verification & Editing:** Users verify their email to begin. If an email is already registered, the system loads their existing data, allowing them to safely modify their attendee counts or switch prayer slots without losing their spot in full sessions.
 - **Dynamic QR Code Generation:** Upon successful registration, a unique QR code is displayed and embedded in the confirmation email for easy check-in.
+- **Digital Check-in System:** A dedicated, camera-ready interface for event staff to scan guest QR codes and manage attendance in real-time.
 - **Bilingual Support:** Interface and critical instructions provided in Bahasa Indonesia and Japanese.
 
 ## Automated Email Notification System
@@ -83,6 +84,16 @@ The application includes a secure, professional admin portal with:
 -   **Capacity Management:** Admins can change the limit for each prayer slot directly from the dashboard.
 -   **Data Export:** One-click CSV export of all registration data, including timestamps and contact info.
 -   **Visualizations:** Interactive charts showing the distribution of jemaah per session.
+
+## Digital Check-in System
+
+To ensure a smooth entry process on the day of the event, the app features a high-performance check-in interface:
+
+-   **QR Scanner:** Built-in camera scanner (powered by `html5-qrcode`) for instant ticket validation.
+-   **Audio Feedback:** Distinctive sound effects for successful scans and completed check-ins to assist staff in high-traffic environments.
+-   **Real-time Validation:** Instantly fetches registration details from Firestore, displaying attendee counts (Ikhwan/Akhwat) and the assigned prayer session.
+-   **Manual Search:** Fallback option to search by Registration ID if a user's QR code is unavailable.
+-   **Attendance Tracking:** Automatically logs the exact timestamp of entry, preventing duplicate check-ins and providing accurate attendance data.
 
 ## Technical Stability & Resilience
 

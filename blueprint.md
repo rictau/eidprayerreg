@@ -100,3 +100,10 @@ This section outlines the iterative steps taken to build and refine the applicat
 11. **Iteration 11:** Updated the 'Tata Tertib' (Rules & Regulations) content in the confirmation email (`functions/index.js`) to strictly follow the latest definitions in `src/components/TataTertibDialog.jsx`. This included adding the specific 15-minute interval note for waves 4 and 5, as well as the bilingual closing prayer and cooperation message.
 12. **Iteration 12:** Standardized the terminology for the early prayer slot from "Gelombang Awal" to "Gelombang 0" across the entire codebase, including UI text, error messages, and email templates. Renamed the associated page component to `GelombangNolPage` and updated the route to `/gelombangnol`.
 13. **Final Deployment:** The completed and fully tested application and Cloud Function were deployed.
+14. **Iteration 14: Digital Check-in System:**
+    - Developed a dedicated `CheckInPage.jsx` for event staff.
+    - Integrated `html5-qrcode` for high-performance QR code scanning.
+    - Added audio feedback (distinct "scan" and "check-in" sounds) for staff usability.
+    - Implemented real-time Firestore updates for `checkedIn` status and `checkedInAt` timestamps.
+    - Added a manual search fallback and detailed registration view for validation.
+    - Updated `App.jsx` with the `/checkin` route.
