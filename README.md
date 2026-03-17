@@ -19,6 +19,7 @@ Upon successful registration, each user receives a unique QR code that serves as
 - [Key Features](#key-features)
 - [Automated Email Notification System](#automated-email-notification-system)
 - [Admin Portal](#admin-portal)
+- [Digital Check-in System](#digital-check-in-system)
 - [Technical Stability & Resilience](#technical-stability--resilience)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)

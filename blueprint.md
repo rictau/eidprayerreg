@@ -13,35 +13,26 @@ The application is a modern React-based web app built with Vite, styled with Mat
 ## 2. Core Application Features
 
 ### Frontend (React + Vite)
-- **Registration Form:** A user-friendly, single-page interface to register for the event.
-    - **Fields:**
-        - Nama (Name)
-        - Email Address
-        - Jumlah Ikhwan (Number of Male Attendees)
-        - Jumlah Akhwat (Number of Female Attendees)
-        - Kloter Salat (Prayer Slot Selection)
+- **User-Friendly Registration:** A single-page interface for event registration.
+    - **Fields:** Nama, Email, Nomor Telepon, Kode Pos, Jumlah Ikhwan, Jumlah Akhwat, Kloter Salat.
+- **Email Verification & Editing:** Users verify their email to begin. If already registered, the system loads their data, allowing them to safely update counts or switch prayer slots without losing their spot.
 - **Rules & Regulations (`Tata Tertib`):**
-    - A mandatory dialog (`TataTertibDialog`) appears before registration can be completed.
-    - Users must scroll to the bottom and agree to the terms, ensuring they have read all rules.
-    - The rules are provided in both Indonesian and Japanese.
+    - A mandatory dialog (`TataTertibDialog`) appears before registration.
+    - Users must scroll and agree to the terms (Indonesian and Japanese).
 - **Prayer Slot Selection:**
-    - Users can choose from one of five available prayer sessions (`Gelombang Salat`).
-    - The UI clearly displays the time for each slot.
+    - Real-time display of availability for five standard sessions plus a specialized "Gelombang 0".
 - **QR Code Generation:**
-    - Upon successful registration, the application displays a unique QR code.
-    - The QR code encodes the registrant's details (Name, Attendees, Prayer Slot) for easy check-in at the venue.
-- **Styling & UI:**
-    - The application uses Material-UI (MUI) for a clean, modern, and responsive design.
-    - The layout is centered and designed to be intuitive on both desktop and mobile devices.
+    - Displays a unique QR code upon success, also embedded in the confirmation email for venue check-in.
+- **Digital Check-in System:**
+    - A dedicated interface for event staff featuring a high-performance QR scanner (`html5-qrcode`).
+    - Audio feedback for scans and real-time validation of attendee counts and session times.
+- **Styling & UI:** Modern, responsive design using Material-UI (MUI).
 
 ### Backend (Firebase)
-- **Firestore Database:**
-    - A `registrations` collection stores all registration data.
-    - Each document in the collection represents a single registration and includes the user's details and selected prayer slot.
+- **Firestore Database:** Real-time NoSQL storage for registrations and session capacity.
 - **Cloud Functions:**
-    - A single, powerful function (`sendRegistrationEmail`) handles all email notifications.
-    - **Trigger:** The function is triggered `onWrite` to the `registrations` collection, meaning it runs for both new registrations and any subsequent updates.
-    - **Email Service:** It uses the Resend API to dispatch emails, ensuring high deliverability.
+    - `sendRegistrationEmail`: Triggered `onWrite` to dispatch professional confirmation emails via Resend API.
+- **Firebase Authentication:** Secures the Admin and Check-in portals.
 
 ---
 
