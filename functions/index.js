@@ -9,11 +9,11 @@ const SENDER_EMAIL = "noreply@indonesiaberlebaran.tokyo";
 
 exports.sendRegistrationEmail = functions.firestore
   .document("registrations/{docId}")
-  .onWrite(async (change, context) => {
-    const registrationData = change.after.exists ? change.after.data() : null;
+  .onCreate(async (snapshot, context) => {
+    const registrationData = snapshot.data();
 
     if (!registrationData) {
-      console.log("Document deleted, no email to send.");
+      console.log("No data found in snapshot.");
       return null;
     }
 

@@ -37,9 +37,98 @@ const CheckInPage = () => {
   const [registrationData, setRegistrationData] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [lastScannedId, setLastScannedId] = useState(null);
   const [isScannerRunning, setIsScannerRunning] = useState(false);
+  
   const scannerRef = useRef(null);
+  const audioCtxRef = useRef(null);
+  const lastScannedIdRef = useRef(null);
+
+  // Audio feedback function
+  const playSound = (type) => {
+    try {
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      const ctx = audioCtxRef.current;
+      
+      // Resume context if suspended (common in mobile browsers)
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      if (type === 'scan') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime); 
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.1);
+      } else if (type === 'checkin') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+      }
+    } catch (e) {
+      console.error("Audio playback failed", e);
+    }
+  };
+
+  const handleSearch = useCallback(async (idToSearch) => {
+    const id = idToSearch || registrationId;
+    if (!id) return;
+
+    setLoading(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const trimmedId = id.trim();
+      const docRef = doc(db, "registrations", trimmedId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setRegistrationData({ id: docSnap.id, ...data });
+        await stopScanner(); 
+      } else {
+        setError(`Registrasi tidak ditemukan untuk ID: ${trimmedId}. (登録が見つかりません)`);
+        lastScannedIdRef.current = null; // Clear on error so they can try again
+      }
+    } catch (err) {
+      console.error("Error fetching registration:", err);
+      setError("Terjadi kesalahan saat mencari data. (データの検索中にエラーが発生しました)");
+      lastScannedIdRef.current = null;
+    } finally {
+      setLoading(false);
+    }
+  }, [registrationId]);
+
+  const onScanSuccess = useCallback((decodedText) => {
+    let id = "";
+    try {
+      const data = JSON.parse(decodedText);
+      id = data["ID Pendaftaran"] || decodedText;
+    } catch (e) {
+      id = decodedText;
+    }
+
+    // Use Ref to check last ID to avoid closure staleness
+    if (id && id !== lastScannedIdRef.current) {
+      lastScannedIdRef.current = id;
+      playSound('scan');
+      handleSearch(id);
+    }
+  }, [handleSearch]);
 
   const startScanner = useCallback(async () => {
     if (!scannerRef.current) {
@@ -56,21 +145,8 @@ const CheckInPage = () => {
           qrbox: { width: 250, height: 250 },
           aspectRatio: 1.0
         },
-        (decodedText) => {
-            let id = "";
-            try {
-              const data = JSON.parse(decodedText);
-              id = data["ID Pendaftaran"] || decodedText;
-            } catch (e) {
-              id = decodedText;
-            }
-
-            if (id && id !== lastScannedId) {
-              setLastScannedId(id);
-              handleSearch(id);
-            }
-        },
-        () => {} // onScanFailure (silent)
+        onScanSuccess,
+        () => {} 
       );
       setIsScannerRunning(true);
       setError(null);
@@ -78,7 +154,7 @@ const CheckInPage = () => {
       console.error("Gagal memulai scanner:", err);
       setError("Kamera tidak ditemukan atau izin ditolak. (カメラが見つからないか、許可が拒否されました)");
     }
-  }, [lastScannedId]);
+  }, [onScanSuccess]);
 
   const stopScanner = async () => {
     if (scannerRef.current && scannerRef.current.isScanning) {
@@ -91,36 +167,6 @@ const CheckInPage = () => {
     }
   };
 
-  const handleSearch = async (idToSearch) => {
-    const id = idToSearch || registrationId;
-    if (!id) return;
-
-    setLoading(true);
-    setError(null);
-    setSuccess(null);
-
-    try {
-      const trimmedId = id.trim();
-      const docRef = doc(db, "registrations", trimmedId);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setRegistrationData({ id: docSnap.id, ...data });
-        await stopScanner(); // Stop camera when data is found to save battery
-      } else {
-        setError(`Registrasi tidak ditemukan untuk ID: ${trimmedId}. (登録が見つかりません)`);
-        setLastScannedId(null); 
-      }
-    } catch (err) {
-      console.error("Error fetching registration:", err);
-      setError("Terjadi kesalahan saat mencari data. (データの検索中にエラーが発生しました)");
-      setLastScannedId(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     startScanner();
     return () => {
@@ -128,7 +174,7 @@ const CheckInPage = () => {
         scannerRef.current.stop().catch(err => console.error("Cleanup error:", err));
       }
     };
-  }, []); // Initial start only
+  }, [startScanner]);
 
   const handleCheckIn = async () => {
     if (!registrationData) return;
@@ -140,6 +186,7 @@ const CheckInPage = () => {
         checkedIn: true,
         checkedInAt: serverTimestamp()
       });
+      playSound('checkin');
       setSuccess("Check-in berhasil! (チェックインに成功しました)");
       setRegistrationData(prev => ({ ...prev, checkedIn: true }));
     } catch (err) {
@@ -151,16 +198,17 @@ const CheckInPage = () => {
   };
 
   const resetScanner = async () => {
+    lastScannedIdRef.current = null; // CRITICAL: Clear the ref
     setRegistrationData(null);
     setSuccess(null);
     setError(null);
     setRegistrationId('');
-    setLastScannedId(null);
     
-    // Ensure we start scanning again
+    // Restart logic is handled by the render effect of registrationData changing back to null
+    // But we call startScanner explicitly to be sure
     setTimeout(() => {
         startScanner();
-    }, 200);
+    }, 100);
   };
 
   const gelombang = registrationData ? initialGelombangSalatOptions.find(g => g.id === registrationData.kloter) : null;
@@ -184,7 +232,6 @@ const CheckInPage = () => {
             </Alert>
         )}
 
-        {/* Camera Paper - ALWAYS in DOM but hidden when registrationData exists */}
         <Paper 
             elevation={3} 
             sx={{ 
@@ -244,7 +291,6 @@ const CheckInPage = () => {
             </Box>
         </Paper>
 
-        {/* Data Card - Only shown when registrationData exists */}
         {registrationData && (
           <Card sx={{ borderRadius: 3, boxShadow: '0 8px 30px 0 rgba(0,0,0,0.12)', border: '1px solid', borderColor: 'divider' }}>
             <CardContent>
