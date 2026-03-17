@@ -1,26 +1,48 @@
-import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { Container, TextField, Button, Typography, Box, Alert, Paper } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Container, TextField, Button, Typography, Box, Alert, Paper, CircularProgress } from '@mui/material';
 import { auth } from '../firebase';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/admin';
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate(from, { replace: true });
+      }
+      setCheckingAuth(false);
+    });
+    return () => unsubscribe();
+  }, [navigate, from]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/admin');
+      // The onAuthStateChanged listener above will handle the navigation
     } catch (error) {
       setError('Email atau password salah. Silakan coba lagi.');
       console.error('Error signing in:', error);
     }
   };
+
+  if (checkingAuth) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Container maxWidth="xs">

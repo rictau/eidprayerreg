@@ -154,7 +154,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Typography>
           <Box sx={{ mb: 2 }}>
             <Typography variant="body1">
-              1. Lokasi salat adalah MIT and Balai Indonesia
+              1. Lokasi salat adalah MIT dan Balai Indonesia
             </Typography>
             <Typography variant="body2" color="text.secondary">
               礼拝会場はMITとバライ・インドネシアです。
@@ -170,7 +170,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <Typography variant="body1">
-              3. Jamaah laki-laki salat di dalam MIT and Balai Indonesia Lantai II
+              3. Jamaah laki-laki salat di dalam MIT dan Balai Indonesia Lantai II
             </Typography>
             <Typography variant="body2" color="text.secondary">
               男性はMIT内またはバライ・インドネシアの2階で礼拝します。
@@ -210,10 +210,10 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <Typography variant="body1">
-              8. Jeda waktu antargelombang adalah 30 menit
+              8. Jeda waktu antargelombang adalah 30 menit (kecuali jarak antara gelombang 4 dan 5 selama 15 menit)
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              回と回の間は30分の間隔をとります。
+              各回の間隔は30分（ただし、第4回と第5回の間隔は15分とする）
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>

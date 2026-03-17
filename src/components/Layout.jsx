@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Footer from "./Footer";
 
-function Layout({ children, maxWidth = "sm", showAppBar = true }) {
+function Layout({ children, maxWidth = "sm", showAppBar = true, showKBRILogo = true }) {
   return (
     <Box
       sx={{
@@ -37,12 +37,16 @@ function Layout({ children, maxWidth = "sm", showAppBar = true }) {
               display: "flex",
               justifyContent: "space-between"
             }}>
-              <Box 
-                component="img"
-                src="/logo-kbri.png"
-                alt="KBRI Logo"
-                sx={{ height: { xs: 40, sm: 48 } }}
-              />
+              {showKBRILogo ? (
+                <Box 
+                  component="img"
+                  src="/logo-kbri.png"
+                  alt="KBRI Logo"
+                  sx={{ height: { xs: 40, sm: 48 } }}
+                />
+              ) : (
+                <Box sx={{ width: { xs: 40, sm: 48 } }} />
+              )}
               <Box sx={{ textAlign: "center" }}>
                 <Typography
                   variant="h6"

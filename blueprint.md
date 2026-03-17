@@ -90,4 +90,13 @@ This section outlines the iterative steps taken to build and refine the applicat
     - **Iteration 7:** Adjusted the sender name and `from` address for brand consistency.
     8.  **Iteration 8:** Corrected the text alignment of the registration details (Name, Ikhwan, Akhwat) to be centered, ensuring a polished and visually consistent email design.
     9.  **Iteration 9:** Revised the Japanese translation of the `Tata Tertib` (Rules & Regulations) in both the application dialog and the confirmation email to be more natural and simplified for Japanese-speaking users.
-    10. **Final Deployment:** The completed and fully tested Cloud Function was deployed to production.
+    10. **Iteration 10:** Created a new isolated registration page for "Gelombang 0" (Slot 0: 05:50 - 06:30).
+    - Added Slot 0 to `src/constants.js`.
+    - Modified `Layout.jsx` to allow conditionally hiding the KBRI logo.
+    - Created `src/pages/GelombangNolPage.jsx` specifically for Slot 0, removing the top banner and KBRI logo.
+    - Updated `src/pages/HomePage.jsx` to exclude Slot 0 from the main registration flow.
+    - Updated `functions/index.js` to include Slot 0 in the email confirmation logic.
+    - Added the `/gelombangnol` route to `src/App.jsx`.
+11. **Iteration 11:** Updated the 'Tata Tertib' (Rules & Regulations) content in the confirmation email (`functions/index.js`) to strictly follow the latest definitions in `src/components/TataTertibDialog.jsx`. This included adding the specific 15-minute interval note for waves 4 and 5, as well as the bilingual closing prayer and cooperation message.
+12. **Iteration 12:** Standardized the terminology for the early prayer slot from "Gelombang Awal" to "Gelombang 0" across the entire codebase, including UI text, error messages, and email templates. Renamed the associated page component to `GelombangNolPage` and updated the route to `/gelombangnol`.
+13. **Final Deployment:** The completed and fully tested application and Cloud Function were deployed.

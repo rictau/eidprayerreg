@@ -9,11 +9,11 @@ const SENDER_EMAIL = "noreply@indonesiaberlebaran.tokyo";
 
 exports.sendRegistrationEmail = functions.firestore
   .document("registrations/{docId}")
-  .onWrite(async (change, context) => {
-    const registrationData = change.after.exists ? change.after.data() : null;
+  .onCreate(async (snapshot, context) => {
+    const registrationData = snapshot.data();
 
     if (!registrationData) {
-      console.log("Document deleted, no email to send.");
+      console.log("No data found in snapshot.");
       return null;
     }
 
@@ -26,6 +26,7 @@ exports.sendRegistrationEmail = functions.firestore
     }
 
     const initialGelombangSalatOptions = [
+        { id: 0, name: "Gelombang 0 (早期)", time: "05:50 - 06:30" },
         { id: 1, name: "Gelombang 1 (第1回)", time: "07:00 - 07:30" },
         { id: 2, name: "Gelombang 2 (第2回)", time: "08:00 - 08:30" },
         { id: 3, name: "Gelombang 3 (第3回)", time: "09:00 – 09:30" },
@@ -174,8 +175,8 @@ exports.sendRegistrationEmail = functions.firestore
               </div>
 
               <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">8. Jeda waktu antargelombang adalah 30 menit</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">回と回の間は30分の間隔をとります。</p>
+                <p style="margin: 0; font-size: 14px;">8. Jeda waktu antargelombang adalah 30 menit (kecuali jarak antara gelombang 4 dan 5 selama 15 menit)</p>
+                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">各回の間隔は30分（ただし、第4回と第5回の間隔は15分とする）</p>
               </div>
 
               <div style="margin-bottom: 0.5rem;">
@@ -206,6 +207,13 @@ exports.sendRegistrationEmail = functions.firestore
                 <p style="margin: 0; font-size: 14px;">4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini</p>
                 <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">コンビニのゴミ箱には捨てないようにしましょう。</p>
               </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 24px; margin-bottom: 24px;">
+            <p style="font-weight: bold; font-size: 16px; margin: 0;">Taqabbalallahu Minna Wa Minkum</p>
+            <p style="font-size: 14px; margin: 4px 0;">タカッバラッラーフ・ミンナ・ワ・ミンクム</p>
+            <p style="font-size: 14px; margin: 12px 0 4px 0;">Mohon kerja sama demi kelancaran ibadah kita bersama.</p>
+            <p style="font-size: 12px; color: #666; margin: 0;">円滑な礼拝運営のため、皆様のご協力をお願いいたします。</p>
           </div>
       </div>
 

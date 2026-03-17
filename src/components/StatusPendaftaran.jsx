@@ -36,23 +36,25 @@ function StatusPendaftaran({ registrationData }) {
 
   return (
     <Container maxWidth="sm">
-      <Box 
-        component="img"
-        src="/banner.jpeg?v=1.1"
-        alt="Banner"
-        sx={{
-          width: "100%",
-          height: "auto",
-          borderRadius: 4,
-          mb: 3,
-          boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.1)",
-          display: "block",
-          objectFit: "cover",
-        }}
-      />
+      {kloter !== 0 && (
+        <Box 
+          component="img"
+          src="/banner.jpeg?v=1.1"
+          alt="Banner"
+          sx={{
+            width: "100%",
+            height: "auto",
+            borderRadius: 4,
+            mb: 3,
+            boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.1)",
+            display: "block",
+            objectFit: "cover",
+          }}
+        />
+      )}
       <Paper
         elevation={4}
-        sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3, textAlign: "center" }}
+        sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3, textAlign: "center", mt: kloter === 0 ? 4 : 0 }}
       >
         <Typography variant="h6" sx={{ mb: 1 }}>
           Pendaftaran Berhasil!
