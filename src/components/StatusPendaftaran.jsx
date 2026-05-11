@@ -39,7 +39,7 @@ function StatusPendaftaran({ registrationData }) {
       {kloter !== 0 && (
         <Box 
           component="img"
-          src="/banner.jpeg?v=1.2"
+          src="/banner.jpeg?v=1.3"
           alt="Banner"
           sx={{
             width: "100%",
