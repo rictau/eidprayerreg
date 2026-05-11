@@ -77,8 +77,8 @@ exports.sendRegistrationEmail = functions.firestore
 
       <div style="border-top: 1px solid #e0e0e0; margin-top: 24px; padding-top: 24px; text-align: left;">
           <h3 style="font-size: 18px; color: #1a237e; margin-bottom: 12px; text-align: center;">
-            TATA TERTIB SALAT IDUL FITRI<br/>
-            <span style="font-size: 14px; color: #666; font-weight: normal;">イード・アル＝フィトル礼拝の注意事項</span>
+            TATA TERTIB SALAT IDUL ADHA<br/>
+            <span style="font-size: 14px; color: #666; font-weight: normal;">イード・アル＝アドハー礼拝の注意事項</span>
           </h3>
           <p style="margin-bottom: 4px; font-size: 14px;">Seluruh jamaah agar memperhatikan hal-hal sebagai berikut:</p>
           <p style="margin-top: 0; margin-bottom: 16px; font-size: 12px; color: #666;">参列される皆さまは、以下のことにご注意ください：</p>
@@ -97,7 +97,7 @@ exports.sendRegistrationEmail = functions.firestore
               </div>
 
               <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Idulfitri 1447 H</p>
+                <p style="margin: 0; font-size: 14px;">3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Iduladha 1447 H</p>
                 <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">礼拝の行われるすべての場所を、きれいに保ちましょう。</p>
               </div>
 
@@ -210,8 +210,8 @@ exports.sendRegistrationEmail = functions.firestore
           </div>
 
           <div style="text-align: center; margin-top: 24px; margin-bottom: 24px;">
-            <p style="font-weight: bold; font-size: 16px; margin: 0;">Taqabbalallahu Minna Wa Minkum</p>
-            <p style="font-size: 14px; margin: 4px 0;">タカッバラッラーフ・ミンナ・ワ・ミンクム</p>
+            <p style="font-weight: bold; font-size: 16px; margin: 0;">Selamat Idul Adha 1447H</p>
+            <p style="font-size: 14px; margin: 4px 0;">イード・アル＝アドハー、おめでとうございます</p>
             <p style="font-size: 14px; margin: 12px 0 4px 0;">Mohon kerja sama demi kelancaran ibadah kita bersama.</p>
             <p style="font-size: 12px; color: #666; margin: 0;">円滑な礼拝運営のため、皆様のご協力をお願いいたします。</p>
           </div>
@@ -240,7 +240,7 @@ exports.sendRegistrationEmail = functions.firestore
             body: JSON.stringify({
                 from: `IndonesiaBerlebaran <${SENDER_EMAIL}>`,
                 to: email, // The recipient is the email from the registration data
-                subject: "Pendaftaran Salat Idul Fitri 1447H",
+                subject: "Pendaftaran Salat Idul Adha 1447H",
                 html: htmlContent,
             }),
         });

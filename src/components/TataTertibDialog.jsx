@@ -44,9 +44,9 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle sx={{ fontWeight: 'bold', textAlign: 'center' }}>
-        Tata Tertib Salat Idul Fitri<br/>
+        Tata Tertib Salat Idul Adha<br/>
         <Typography component="span" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-          イード・アル＝フィトル礼拝の注意事項
+          イード・アル＝アドハー礼拝の注意事項
         </Typography>
       </DialogTitle>
       <DialogContent dividers ref={contentRef} onScroll={handleScroll}>
@@ -80,7 +80,7 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <Typography variant="body1">
-              3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Idulfitri 1447 H
+              3. Menjaga kebersihan seluruh area yang dilalui dalam pelaksanaan salat Iduladha 1447 H
             </Typography>
             <Typography variant="body2" color="text.secondary">
               礼拝の行われるすべての場所を、きれいに保ちましょう。
@@ -268,9 +268,9 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
         </Box>
 
         <Typography variant="h6" align="center" sx={{ mt: 3, fontWeight: 'bold' }}>
-          Taqabbalallahu Minna Wa Minkum<br/>
+          Selamat Idul Adha 1447H<br/>
           <Typography component="span" variant="body1">
-            タカッバラッラーフ・ミンナ・ワ・ミンクム
+            イード・アル＝アドハー、おめでとうございます
           </Typography>
         </Typography>
         <Box sx={{ mt: 1, mb: 3, textAlign: 'center' }}>

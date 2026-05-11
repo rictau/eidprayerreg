@@ -1,8 +1,8 @@
-# Blueprint: Salat Idul Fitri 1447H Registration App
+# Blueprint: Salat Idul Adha 1447H Registration App
 
 ## 1. Overview
 
-This document outlines the architecture and features of the Salat Idul Fitri 1447H registration application. The primary goal is to provide a seamless and informative registration experience for congregants, culminating in an automated confirmation email that contains all necessary information for the event day.
+This document outlines the architecture and features of the Salat Idul Adha 1447H registration application. The primary goal is to provide a seamless and informative registration experience for congregants, culminating in an automated confirmation email that contains all necessary information for the event day.
 
 **Live Application:** [https://indonesiaberlebaran.tokyo/](https://indonesiaberlebaran.tokyo/)
 
@@ -41,8 +41,8 @@ The application is a modern React-based web app built with Vite, styled with Mat
 The email system is a critical component, designed to be comprehensive and professional.
 
 ### Email Configuration:
-- **Sender:** `Idul Fitri <idulfitri@masjid.tokyo>`
-- **Subject:** `Salat Idul Fitri 1447H`
+- **Sender:** `Idul Adha <iduladha@masjid.tokyo>`
+- **Subject:** `Salat Idul Adha 1447H`
 
 ### Email Content & Design:
 - **Layout:** A centered, responsive HTML template that looks great on all devices.

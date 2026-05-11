@@ -293,7 +293,7 @@ const AdminPage = () => {
                     Admin Panel
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Panel kendali jemaah Salat Idul Fitri 1447H
+                    Panel kendali jemaah Salat Idul Adha 1447H
                 </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -325,7 +325,7 @@ const AdminPage = () => {
                 >
                     Export CSV
                 </Button>
-                {exportData.length > 0 && <CSVLink data={exportData} filename={"pendaftaran-idulfitri-tokyo.csv"} ref={csvLinkRef} style={{display: 'none'}} />}
+                {exportData.length > 0 && <CSVLink data={exportData} filename={"pendaftaran-iduladha-tokyo.csv"} ref={csvLinkRef} style={{display: 'none'}} />}
             </Box>
         </Box>
 

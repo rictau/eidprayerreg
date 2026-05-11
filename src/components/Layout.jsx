@@ -58,7 +58,7 @@ function Layout({ children, maxWidth = "sm", showAppBar = true, showKBRILogo = t
                     fontSize: { xs: '0.9rem', sm: '1.1rem' }
                   }}
                 >
-                  Salat Idul Fitri 1447H
+                  Salat Idul Adha 1447H
                 </Typography>
                 <Typography 
                   variant="subtitle2" 
@@ -69,7 +69,7 @@ function Layout({ children, maxWidth = "sm", showAppBar = true, showKBRILogo = t
                     fontSize: { xs: '0.65rem', sm: '0.75rem' }
                   }}
                 >
-                  イード・アル＝フィトル礼拝
+                  イード・アル＝アドハー礼拝
                 </Typography>
               </Box>
               <Box 

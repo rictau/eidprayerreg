@@ -36,7 +36,7 @@ import { initialGelombangSalatOptions } from "../constants";
 
 function GelombangNolPage() {
   useEffect(() => {
-    document.title = "Gelombang 0 - Salat Idul Fitri 1447H";
+    document.title = "Gelombang 0 - Salat Idul Adha 1447H";
   }, []);
 
   const [gelombangSalatData, setGelombangSalatData] = useState([]);

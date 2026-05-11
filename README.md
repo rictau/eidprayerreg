@@ -65,7 +65,7 @@ The email system is a critical component, designed to be comprehensive and profe
 
 ### Email Configuration:
 - **Sender:** `noreply@indonesiaberlebaran.tokyo`
-- **Subject:** `Salat Idul Fitri 1447H`
+- **Subject:** `Salat Idul Adha 1447H`
 - **Provider:** Resend API via Cloud Functions.
 
 ### Email Content & Design:
@@ -130,7 +130,7 @@ To ensure a smooth entry process on the day of the event, the app features a hig
 1.  **Clone and Install:**
     ```sh
     git clone <repository-url>
-    cd idulfitri1447h
+    cd iduladha1447h
     npm install
     ```
 

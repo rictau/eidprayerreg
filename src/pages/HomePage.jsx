@@ -82,7 +82,7 @@ function HomePage() {
         });
 
         const mergedData = initialGelombangSalatOptions
-          .filter(option => option.id !== 0)
+          .filter(option => option.id !== 0 && !option.hidden)
           .map((option) => {
             const data = timeslotData[option.id] || {};
             const limit = data.limit || 0;
@@ -445,7 +445,7 @@ function HomePage() {
     <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
       <Box 
         component="img"
-        src="/banner.jpeg?v=1.1"
+        src="/banner.jpeg?v=1.2"
         alt="Banner"
         sx={{
           width: "100%",
@@ -476,7 +476,7 @@ function HomePage() {
       {!loading && !existingRegistration && totalAvailability <= 0 && (
         <Alert severity="error" sx={{ mb: 3 }}>
           <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-            Maaf, seluruh kuota pendaftaran Salat Idul Fitri telah penuh. Kami memohon pengertian Anda untuk mencari masjid lain yang mengadakan Salat Idul Fitri.
+            Maaf, seluruh kuota pendaftaran Salat Idul Adha telah penuh. Kami memohon pengertian Anda untuk mencari masjid lain yang mengadakan Salat Idul Adha.
           </Typography>
           <Typography variant="caption" sx={{ display: 'block', mt: 0.5 }}>
             申し訳ありませんが、イード礼拝のすべての定員が満席となりました。ご理解のほどよろしくお願いいたします。イード礼拝を開催している他のモスクをお探しになることをお勧めします。
