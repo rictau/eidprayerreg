@@ -444,7 +444,7 @@ function GelombangNolPage() {
           Pendaftaran Gelombang 0
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: "bold" }}>
-          05:50 - 06:30
+          04:45 - 05:30
         </Typography>
       </Box>
 
