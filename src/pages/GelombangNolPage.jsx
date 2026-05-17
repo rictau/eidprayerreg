@@ -33,6 +33,7 @@ import { FaMale, FaFemale } from "react-icons/fa";
 import StatusPendaftaran from "../components/StatusPendaftaran";
 import TataTertibDialog from "../components/TataTertibDialog";
 import { initialGelombangSalatOptions } from "../constants";
+import { validateEmail } from "../utils/validateEmail";
 
 function GelombangNolPage() {
   useEffect(() => {
@@ -49,7 +50,7 @@ function GelombangNolPage() {
     ikhwan: 0,
     akhwat: 0,
   });
-  
+
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [emailCheckLoading, setEmailCheckLoading] = useState(false);
   const [emailNotification, setEmailNotification] = useState(null);
@@ -109,7 +110,7 @@ function GelombangNolPage() {
       const selectedGelombang = gelombangSalatData.find(g => g.id === selectedGelombangSalat);
       if (selectedGelombang) {
         const isCurrentKloter = existingRegistration && existingRegistration.kloter === selectedGelombang.id;
-        const effectiveAvailability = isCurrentKloter 
+        const effectiveAvailability = isCurrentKloter
           ? selectedGelombang.availability + (existingRegistration.ikhwan + existingRegistration.akhwat)
           : selectedGelombang.availability;
 
@@ -122,11 +123,11 @@ function GelombangNolPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     if (name === "email") {
       setIsEmailVerified(false);
       setEmailNotification(null);
-      
+
       if (existingRegistration) {
         setExistingRegistration(null);
         setFormData((prev) => ({
@@ -152,12 +153,12 @@ function GelombangNolPage() {
 
   const handleCheckEmail = async () => {
     if (!formData.email) return;
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+
+    const result = validateEmail(formData.email);
+    if (!result.valid) {
       setEmailNotification({
         severity: "error",
-        message: "Format email tidak valid. (無効なメール形式です)"
+        message: result.message,
       });
       return;
     }
@@ -168,15 +169,15 @@ function GelombangNolPage() {
     try {
       const q = query(
         collection(db, "registrations"),
-        where("email", "==", formData.email),
+        where("email", "==", result.email),
         limit(1)
       );
       const querySnapshot = await getDocs(q);
-      
+
       if (!querySnapshot.empty) {
         const doc = querySnapshot.docs[0];
         const data = doc.data();
-        
+
         setExistingRegistration({ id: doc.id, ...data });
         setFormData({
           nama: data.nama || "",
@@ -187,10 +188,10 @@ function GelombangNolPage() {
           akhwat: data.akhwat || 0,
         });
         setSelectedGelombangSalat(data.kloter === 0 ? data.kloter : null);
-        
+
         setEmailNotification({
           severity: "info",
-          message: data.kloter === 0 
+          message: data.kloter === 0
             ? "Email ini sudah digunakan untuk registrasi. Silakan ubah data registrasi jika diperlukan. (このメールアドレスは登録に使用されています。必要に応じて登録データを変更してください。)"
             : `Email ini sudah terdaftar di Gelombang ${data.kloter}. Anda dapat memindahkan pendaftaran Anda ke Gelombang 0 di sini. (このメールは第${data.kloter}回に登録されています。ここで第0回に登録を変更できます。)`
         });
@@ -212,7 +213,7 @@ function GelombangNolPage() {
       setEmailCheckLoading(false);
     }
   };
-  
+
   const handleEmailKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -244,7 +245,7 @@ function GelombangNolPage() {
     }
 
     const userRegistration = existingRegistration;
-    
+
     const selectedGelombangSalatData = gelombangSalatData.find(
       (k) => k.id === selectedGelombangSalat,
     );
@@ -276,7 +277,7 @@ function GelombangNolPage() {
     setOpen(false);
     try {
       let finalRegistrationId;
-      
+
       const selectedSlot = gelombangSalatData.find(g => g.id === selectedGelombangSalat);
       if (!selectedSlot || !selectedSlot.docId) {
         throw new Error("Data gelombang salat tidak ditemukan! (時間帯データが見つかりません)");
@@ -293,7 +294,7 @@ function GelombangNolPage() {
           "timeslot",
           selectedSlot.docId,
         );
-        
+
         const oldSlot = gelombangSalatData.find(g => g.id === existingRegistration.kloter);
         const oldSlotDocRef = (oldSlot && oldSlot.docId) ? doc(db, "timeslot", oldSlot.docId) : null;
 
@@ -303,7 +304,7 @@ function GelombangNolPage() {
 
           if (!newSlotDoc.exists())
             throw new Error("Gelombang salat baru tidak ditemukan!");
-          
+
           if (existingRegistration.kloter !== selectedGelombangSalat) {
             if (oldSlotDoc && oldSlotDoc.exists()) {
               const oldSlotData = oldSlotDoc.data();
@@ -435,16 +436,31 @@ function GelombangNolPage() {
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto", p: 2 }}>
+      <Box
+        component="img"
+        src="/banner.jpeg?v=1.3"
+        alt="Banner"
+        sx={{
+          width: "100%",
+          height: "auto",
+          borderRadius: 4,
+          mb: 3,
+          boxShadow: "0 10px 30px 0 rgba(0, 0, 0, 0.1)",
+          display: "block",
+          objectFit: "cover",
+        }}
+      />
+
       <Box sx={{ mb: 3, textAlign: "left" }}>
         <Typography
-          variant="h5"
+          variant="h6"
           component="h1"
-          sx={{ fontWeight: "bold", color: "primary.main", mb: 0 }}
+          sx={{ fontWeight: "bold" }}
         >
-          Pendaftaran Gelombang 0
+          Silakan isi formulir di bawah ini untuk mendaftarkan diri dan keluarga.
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: "bold" }}>
-          04:45 - 05:30
+        <Typography variant="body2" component="h2" color="text.secondary">
+          下記フォームにご記入の上、ご自身とご家族の登録をお願いします。
         </Typography>
       </Box>
 
@@ -488,14 +504,14 @@ function GelombangNolPage() {
           </Box>
 
           {emailNotification && (
-            <Alert 
-              severity={emailNotification.severity} 
+            <Alert
+              severity={emailNotification.severity}
               sx={{ mb: 3 }}
               action={
                 existingRegistration && (
-                  <Button 
-                    color="inherit" 
-                    size="small" 
+                  <Button
+                    color="inherit"
+                    size="small"
                     onClick={() => {
                       setRegistrationData(existingRegistration);
                       setRegistrationSuccess(true);
@@ -509,7 +525,7 @@ function GelombangNolPage() {
               {emailNotification.message}
             </Alert>
           )}
-          
+
           <TextField
             required
             fullWidth
@@ -520,7 +536,7 @@ function GelombangNolPage() {
             sx={{ mb: 3 }}
             disabled={loading || !isEmailVerified || !!existingRegistration}
           />
-          
+
           {!existingRegistration && (
             <>
               <TextField
@@ -553,8 +569,12 @@ function GelombangNolPage() {
               />
             </>
           )}
-          
+
           <Box sx={{ mb: 5 }}>
+          <Typography variant="body2" color="text.disabled" sx={{ mb: 2, fontWeight: "small" }}>
+               *Anak di bawah 4 tahun tidak perlu didaftarkan.<br/>
+               <br/>
+            </Typography>
             <FormControl
               component="fieldset"
               sx={{ mb: 4 }}
@@ -610,11 +630,11 @@ function GelombangNolPage() {
 
         <Box sx={{ mb: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Gelombang Salat Terpilih
+            Pilih Gelombang Salat
           </Typography>
 
           <Typography variant="body2" color="text.secondary">
-            選択された時間帯
+            時間帯を選択
           </Typography>
         </Box>
         {loading ? (
@@ -625,25 +645,20 @@ function GelombangNolPage() {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "1fr",
+              gridTemplateColumns: "repeat(2, 1fr)",
               gap: 2,
               mb: 3,
             }}
           >
             {gelombangSalatData.map((gelombang) => {
               const isCurrentKloter = existingRegistration && existingRegistration.kloter === gelombang.id;
-              const effectiveAvailability = isCurrentKloter 
+              const effectiveAvailability = isCurrentKloter
                 ? gelombang.availability + (existingRegistration.ikhwan + existingRegistration.akhwat)
                 : gelombang.availability;
-                
+
               const isFull = gelombang.availability <= 0;
               const hasQuotaForSelection = effectiveAvailability >= totalAttendees;
               const isDisabled = !isEmailVerified || (totalAttendees > 0 && !hasQuotaForSelection) || (isFull && !isCurrentKloter);
-
-              // Auto-select the only available slot if verified
-              if (isEmailVerified && selectedGelombangSalat === null && !isDisabled) {
-                setSelectedGelombangSalat(gelombang.id);
-              }
 
               return (
                   <Card
@@ -651,15 +666,15 @@ function GelombangNolPage() {
                   variant="outlined"
                   sx={{
                     borderRadius: 4,
-                    borderColor: "primary.main",
-                    borderWidth: 2,
-                    backgroundColor: "rgba(18, 76, 58, 0.1)",
-                    ...(isDisabled && {
+                    ...(selectedGelombangSalat === gelombang.id && {
+                      borderColor: "primary.main",
+                      borderWidth: 2,
+                      backgroundColor: "rgba(18, 76, 58, 0.1)",
+                    }),
+                    ...(isDisabled && selectedGelombangSalat !== gelombang.id && {
                         backgroundColor: "#f5f5f5",
                         color: "#bdbdbd",
                         cursor: "not-allowed",
-                        borderColor: "#e0e0e0",
-                        borderWidth: 1,
                       }),
                   }}
                 >
@@ -677,10 +692,10 @@ function GelombangNolPage() {
                   >
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <Box>
-                        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}> 
+                        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                           {gelombang.name}
                         </Typography>
-                        <Typography variant="body2">{gelombang.time}</Typography> 
+                        <Typography variant="body2">{gelombang.time}</Typography>
                       </Box>
                       {isFull && (
                         <Typography variant="caption" color="error" sx={{ fontWeight: "bold", mt: 0.5 }}>
@@ -693,11 +708,11 @@ function GelombangNolPage() {
                         variant="determinate"
                         value={gelombang.progress}
                         color={isFull ? "error" : "primary"}
-                        sx={{ 
-                            mb: 0.5, 
-                            height: 6, 
+                        sx={{
+                            mb: 0.5,
+                            height: 6,
                             borderRadius: 3,
-                            backgroundColor: isFull ? "rgba(211, 47, 47, 0.1)" : "rgba(18, 76, 58, 0.1)", 
+                            backgroundColor: isFull ? "rgba(211, 47, 47, 0.1)" : "rgba(18, 76, 58, 0.1)",
                             "& .MuiLinearProgress-bar": {
                                 backgroundColor: isFull ? "error.main" : "primary.light"
                             }

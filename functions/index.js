@@ -51,9 +51,10 @@ exports.sendRegistrationEmail = functions.firestore
 
     const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); color: #333;">
-      <h2 style="margin-bottom: 8px; font-size: 24px; color: #1a237e; text-align: center;">Pendaftaran Berhasil!</h2>
+      <h2 style="margin-bottom: 4px; font-size: 24px; color: #1a237e; text-align: center;">Pendaftaran Salat Idul Adha 1447H</h2>
+      <p style="color: #666; margin: 0 0 16px; font-size: 14px; text-align: center;">イード・アル＝アドハー礼拝の登録</p>
       <p style="margin-bottom: 8px; font-size: 16px; text-align: center;">Terima kasih telah mendaftar. Sampai jumpa di Masjid Indonesia Tokyo.</p>
-      <p style="color: #666; margin-bottom: 24px; font-size: 14px; text-align: center;">ご登録ありがとうございます。東京インドネシアモスクでお会いしましょう。</p>
+      <p style="color: #666; margin-bottom: 24px; font-size: 14px; text-align: center;">ご登録ありがとうございます。インドネシア東京モスクでお会いしましょう。</p>
 
       <div style="background-color: #e8eaf6; border-radius: 8px; padding: 16px; margin-bottom: 24px; text-align: center;">
         <h1 style="margin: 0; font-weight: bold; font-size: 28px; color: #1a237e;">${gelombangName}</h1>
@@ -185,30 +186,6 @@ exports.sendRegistrationEmail = functions.firestore
               </div>
           </div>
 
-          <div style="margin-bottom: 1.5rem;">
-              <h4 style="font-weight: bold; margin-bottom: 0.5rem; font-size: 15px;">IV. KONSUMSI <span style="font-size: 13px; font-weight: normal; color: #666;">(飲食について)</span></h4>
-              
-              <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">1. Panitia menyediakan snacks dan minum untuk seluruh jamaah</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">実行委員会から、軽食と飲み物を用意しています。</p>
-              </div>
-
-              <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">2. Jamaah mengambil snacks dan minum seusai mengikuti salat</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">それらは礼拝後に受け取りましょう。</p>
-              </div>
-
-              <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">3. Jamaah membawa sampah plastik/kotak snacks ke dalam tas masing-masing</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">空き箱やプラスチックゴミは、自分の袋に持ち帰りましょう。</p>
-              </div>
-
-              <div style="margin-bottom: 0.5rem;">
-                <p style="margin: 0; font-size: 14px;">4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini</p>
-                <p style="margin: 0 0 0 14px; font-size: 12px; color: #666;">コンビニのゴミ箱には捨てないようにしましょう。</p>
-              </div>
-          </div>
-
           <div style="text-align: center; margin-top: 24px; margin-bottom: 24px;">
             <p style="font-weight: bold; font-size: 16px; margin: 0;">Selamat Idul Adha 1447H</p>
             <p style="font-size: 14px; margin: 4px 0;">イード・アル＝アドハー、おめでとうございます</p>
@@ -219,7 +196,7 @@ exports.sendRegistrationEmail = functions.firestore
 
       <div style="border-top: 1px solid #e0e0e0; margin-top: 24px; padding-top: 24px; text-align: center;">
           <p style="font-size: 14px; color: #333; margin: 0;"><strong>Lokasi (場所):</strong></p>
-          <p style="font-size: 14px; color: #555; margin: 4px 0;">Masjid Indonesia Tokyo (東京インドネシアモスク)</p>
+          <p style="font-size: 14px; color: #555; margin: 4px 0;">Masjid Indonesia Tokyo (インドネシア東京モスク)</p>
           <p style="font-size: 12px; color: #777; margin: 4px 0;">4 Chome-6-6 Meguro, Meguro City, Tokyo 153-0063</p>
           <a href="https://maps.app.goo.gl/QgYA3PSS48UwSk8y6" style="font-size: 12px; color: #1a73e8; text-decoration: none;">Lihat di Google Maps</a>
       </div>

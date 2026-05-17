@@ -56,14 +56,17 @@ function StatusPendaftaran({ registrationData }) {
         elevation={4}
         sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3, textAlign: "center", mt: kloter === 0 ? 4 : 0 }}
       >
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          Pendaftaran Berhasil!
+        <Typography variant="h6" sx={{ mb: 0.5 }}>
+          Pendaftaran Salat Idul Adha 1447H
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
+          イード・アル＝アドハー礼拝の登録
         </Typography>
         <Typography variant="body2" sx={{ mb: 1 }}>
           Terima kasih telah mendaftar. Sampai jumpa di Masjid Indonesia Tokyo.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          ご登録ありがとうございます。東京インドネシアモスクでお会いしましょう。
+          ご登録ありがとうございます。インドネシア東京モスクでお会いしましょう。
         </Typography>
         <Box sx={{ mb: 2 }}>
           <Typography variant="h5" component="h1" sx={{ fontWeight: "bold" }}>

@@ -43,6 +43,7 @@ import { FaMale, FaFemale } from "react-icons/fa";
 import StatusPendaftaran from "../components/StatusPendaftaran";
 import TataTertibDialog from "../components/TataTertibDialog";
 import { initialGelombangSalatOptions } from "../constants";
+import { validateEmail } from "../utils/validateEmail";
 
 function HomePage() {
   const [gelombangSalatData, setGelombangSalatData] = useState([]);
@@ -157,12 +158,12 @@ function HomePage() {
 
   const handleCheckEmail = async () => {
     if (!formData.email) return;
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+
+    const result = validateEmail(formData.email);
+    if (!result.valid) {
       setEmailNotification({
         severity: "error",
-        message: "Format email tidak valid. (無効なメール形式です)"
+        message: result.message,
       });
       return;
     }
@@ -173,7 +174,7 @@ function HomePage() {
     try {
       const q = query(
         collection(db, "registrations"),
-        where("email", "==", formData.email),
+        where("email", "==", result.email),
         limit(1)
       );
       const querySnapshot = await getDocs(q);

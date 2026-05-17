@@ -226,47 +226,6 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Box>
         </Box>
 
-        <Divider sx={{ my: 3 }} />
-
-        {/* Section IV */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'baseline', gap: 1 }}>
-            IV. KONSUMSI <Typography variant="subtitle2" component="span">(飲食について)</Typography>
-          </Typography>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="body1">
-              1. Panitia menyediakan snacks dan minum untuk seluruh jamaah
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              実行委員会から、軽食と飲み物を用意しています。
-            </Typography>
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="body1">
-              2. Jamaah mengambil snacks dan minum seusai mengikuti salat
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              それらは礼拝後に受け取りましょう。
-            </Typography>
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="body1">
-              3. Jamaah membawa sampah plastik/kotak snacks ke dalam tas masing-masing
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              空き箱やプラスチックゴミは、自分の袋に持ち帰りましょう。
-            </Typography>
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="body1">
-              4. Jamaah dilarang membuang sampah plastik/kotak snacks di konbini
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              コンビニのゴミ箱には捨てないようにしましょう。
-            </Typography>
-          </Box>
-        </Box>
-
         <Typography variant="h6" align="center" sx={{ mt: 3, fontWeight: 'bold' }}>
           Selamat Idul Adha 1447H<br/>
           <Typography component="span" variant="body1">

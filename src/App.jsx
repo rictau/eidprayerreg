@@ -28,7 +28,7 @@ function App() {
           />
           <Route 
             path="/gelombangnol"
-            element={<Layout showKBRILogo={false}><GelombangNolPage /></Layout>}
+            element={<Layout><GelombangNolPage /></Layout>}
           />
           <Route path="/login" element={<Layout><LoginPage /></Layout>} />
           <Route element={<ProtectedRoute />}>

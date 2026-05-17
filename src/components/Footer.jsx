@@ -50,6 +50,30 @@ function Footer() {
             </Box>
           </Link>
         </Paper>
+        <Box sx={{ mt: 3, textAlign: "center" }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mb: 1.5, fontWeight: 500 }}
+          >
+            Didukung oleh
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 3,
+            }}
+          >
+            <Box
+              component="img"
+              src="/logo_shinjukutei.jpeg"
+              alt="Shinjukutei Logo"
+              sx={{ height: { xs: 28, sm: 32 } }}
+            />
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

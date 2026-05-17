@@ -38,10 +38,10 @@ function Layout({ children, maxWidth = "sm", showAppBar = true, showKBRILogo = t
               justifyContent: "space-between"
             }}>
               {showKBRILogo ? (
-                <Box 
+                <Box
                   component="img"
-                  src="/logo-kbri.png"
-                  alt="KBRI Logo"
+                  src="/logo-kmii.png"
+                  alt="KMII Logo"
                   sx={{ height: { xs: 40, sm: 48 } }}
                 />
               ) : (
@@ -72,10 +72,10 @@ function Layout({ children, maxWidth = "sm", showAppBar = true, showKBRILogo = t
                   イード・アル＝アドハー礼拝
                 </Typography>
               </Box>
-              <Box 
+              <Box
                 component="img"
-                src="/logo-kmii.png"
-                alt="KMII Logo"
+                src="/logo-mit.png"
+                alt="MIT Logo"
                 sx={{ height: { xs: 40, sm: 48 } }}
               />
             </Toolbar>
