@@ -210,10 +210,10 @@ const TataTertibDialog = ({ open, onClose, onConfirm, readOnly = false }) => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <Typography variant="body1">
-              8. Jeda waktu antargelombang adalah 30 menit (kecuali jarak antara gelombang 4 dan 5 selama 15 menit)
+              8. Jeda waktu antargelombang adalah 30 menit
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              各回の間隔は30分（ただし、第4回と第5回の間隔は15分とする）
+              各回の間隔は30分
             </Typography>
           </Box>
           <Box sx={{ mb: 2 }}>
