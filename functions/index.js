@@ -1,14 +1,15 @@
 
 const functions = require("firebase-functions");
+const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
 admin.initializeApp();
 
-// The Resend API key is now securely stored in Firebase Functions configuration
-const RESEND_API_KEY = functions.config().resend.key;
-const SENDER_EMAIL = "noreply@indonesiaberlebaran.tokyo";
+const RESEND_API_KEY = defineSecret("RESEND_KEY");
+const SENDER_EMAIL = "iduladha@mail.kmii.jp";
 
-exports.sendRegistrationEmail = functions.firestore
-  .document("registrations/{docId}")
+exports.sendRegistrationEmail = functions
+  .runWith({ secrets: [RESEND_API_KEY] })
+  .firestore.document("registrations/{docId}")
   .onCreate(async (snapshot, context) => {
     const registrationData = snapshot.data();
 
@@ -212,10 +213,10 @@ exports.sendRegistrationEmail = functions.firestore
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${RESEND_API_KEY}`,
+                "Authorization": `Bearer ${RESEND_API_KEY.value()}`,
             },
             body: JSON.stringify({
-                from: `IndonesiaBerlebaran <${SENDER_EMAIL}>`,
+                from: `Idul Adha 1447H <${SENDER_EMAIL}>`,
                 to: email, // The recipient is the email from the registration data
                 subject: "Pendaftaran Salat Idul Adha 1447H",
                 html: htmlContent,
